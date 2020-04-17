@@ -21,6 +21,13 @@ class UserController extends Controller
         }
 
     }
+    public function register2() {
+        $username = session()->get("USER_NAME");
+
+            return view("user.register2",["username"=>$username]);
+
+
+    }
 
     public function registerValidation(Request $request) {
         $rules = [
