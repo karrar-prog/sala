@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Enums\PointCategory;
+use App\Http\Requests\Request;
 use App\Models\Point;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Mockery\Exception;
 
@@ -11,36 +14,70 @@ class PointController extends Controller
 {
     public function index($c)
     {
+        $mydatetime = Carbon::now();
+        $mydate = $mydatetime->toDateString();
+
         $city = 0;
+        if ($c == 1) {
+            $allPoints = Point::OrderBy("t_number")->where("city", $city)->where("category", "<>", 4)->where('date', '<', $mydate)
+                ->where("category", "<>", 4)
+                ->get();
 
-        $allPoints = Point::OrderBy("t_number")->where("city",$city)->where("category",$c)
-            ->get();
 
-        $use_name ="";
-        try
-        {
-            $use_name =  session()->get("USER_NAME");
+        } elseif ($c = 2) {
+            $allPoints = Point::OrderBy("t_number")->where("category", "<>", 4)->where('date', '=', $mydate)
+                ->where("category", "<>", 4)
+                ->get();
 
-        }catch (Exception $s){
+
+        } elseif ($c = 3) {
+            $allPoints = Point::OrderBy("t_number")->where("category", "<>", 4)->where('date', null)
+                ->get();
+
+
+        } else {
+
+            // wating
+            $allPoints = Point::OrderBy("t_number")->where("city", $city)->where("category", $c)
+                ->where("category", "<>", 4)
+                ->get();
+
 
         }
+
+        $use_name = "";
+        try {
+            $use_name = session()->get("USER_NAME");
+
+        } catch (Exception $s) {
+
+        }
+        $type3 = DB::table('point')->where("category", "<>", 4)->where('date', null)->count();
+        $type2 = DB::table('point')->where("category", "<>", 4)->where('date', '=', $mydate)->count();
+        $type1 = DB::table('point')->where("category", "<>", 4)->where('date', '<', $mydate)->count();
         return view('roadGuide.all_points')->with([
-            "allPoints" => $allPoints,"user_name"=>$use_name]);
+            "allPoints" => $allPoints, "user_name" => $use_name, "type1" => $type1, "type2" => $type2, "type3" => $type3]);
     }
+
     public function main()
     {
-        $use_name ="";
+        $use_name = "";
         $phone = "";
-        try
-        {
-            $use_name =  session()->get("USER_NAME");
-            $phone =  session()->get("USER_USERNAME");
+        try {
+            $use_name = session()->get("USER_NAME");
+            $phone = session()->get("USER_USERNAME");
 
-        }catch (Exception $s){
+        } catch (Exception $s) {
 
         }
+        $mydatetime = Carbon::now();
+        $mydate = $mydatetime->toDateString();
 
-       return view("/about_app",["user_name"=>$use_name , "phone"=>$phone]);
+        $type3 = DB::table('point')->where("category", "<>", 4)->where('date', null)->count();
+        $type2 = DB::table('point')->where("category", "<>", 4)->where('date', '=', $mydate)->count();
+        $type1 = DB::table('point')->where("category", "<>", 4)->where('date', '<', $mydate)->count();
+
+        return view("/about_app", ["user_name" => $use_name, "phone" => $phone, "type1" => $type1, "type2" => $type2, "type3" => $type3]);
     }
 
     public function getPublicPoints()
@@ -51,33 +88,38 @@ class PointController extends Controller
         $publicPoints = Point::where("t_number", ">=", $source)
             ->where("t_number", "<=", $destination)
             ->where("category", PointCategory::PUBLIC)
+            ->where("category", "<>", 4)
             ->get();
 
         return ["publicPoints" => $publicPoints];
     }
 
-    public function shwoMaps ()
+    public function shwoMaps()
     {
-        $use_name ="";
-        try
-        {
-            $use_name =  session()->get("USER_NAME");
+        $use_name = "";
+        try {
+            $use_name = session()->get("USER_NAME");
 
-        }catch (Exception $s){
+        } catch (Exception $s) {
 
+        }
+        $mydatetime = Carbon::now();
+        $mydate = $mydatetime->toDateString();
+        $type3 = DB::table('point')->where("category", "<>", 4)->where('date', null)->count();
+        $type2 = DB::table('point')->where("category", "<>", 4)->where('date', '=', $mydate)->count();
+        $type1 = DB::table('point')->where("category", "<>", 4)->where('date', '<', $mydate)->count();
+
+        $latAndLong = Point::orderBy('id')->where("category", "<>", 4)->get()->toArray();
+        return view('roadGuide.maps', compact('latAndLong'), ["user_name" => $use_name, "type1" => $type1, "type2" => $type2, "type3" => $type3]);
     }
 
-        $latAndLong = Point::orderBy('id')->get()->toArray();
-        return view('roadGuide.maps',compact('latAndLong'),["user_name"=>$use_name]);
-    }
-
-    function distance($lat1, $lon1, $lat2, $lon2, $unit) {
+    function distance($lat1, $lon1, $lat2, $lon2, $unit)
+    {
         if (($lat1 == $lat2) && ($lon1 == $lon2)) {
             return 0;
-        }
-        else {
+        } else {
             $theta = $lon1 - $lon2;
-            $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
+            $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) + cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
             $dist = acos($dist);
             $dist = rad2deg($dist);
             $miles = $dist * 60 * 1.1515;

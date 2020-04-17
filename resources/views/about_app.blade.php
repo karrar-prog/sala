@@ -46,14 +46,16 @@
         {{--<div style="width: 100%; height: calc(100% - 134px);">--}}
         {{--<div class="w-100 h-100" id="map-canvas"></div>--}}
         {{--</div>--}}
+
         <li class="list-group-item"><img src="{{asset("maps-icon/2.png")}}" alt="-" border="0" style="max-width: 30px;">
-            <a href="/list/1" >  400     تم الوصول اليهم مؤخراً</a>
+            <a href="/list/2" >  {{$type2}}      تم الوصول اليهم مؤخرا    </a>
         <li class="list-group-item"><img src="{{asset("maps-icon/1.png")}}" alt="-" border="0" style="max-width: 30px;">
-            <a href="/list/2" > 20       ينتظر مساعدةً</a>
+            <a href="/list/3" >{{$type3}}         ينتظر مساعدة    </a>
         </li>
         <li class="list-group-item"><img src="{{asset("maps-icon/3.png")}}" alt="-" border="0" style="max-width: 30px;">
-            <a href="/list/3" >   50    بأنتظار التوثيقً</a>
+            <a href="/list/1" > {{$type1}}   بأنتظار التوثيق   </a>
         </li>
+
         <li class="list-group-item">
             <a href="/map" >
 

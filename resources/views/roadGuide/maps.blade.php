@@ -40,12 +40,12 @@
     <div class="container py-4">
 
         <li class="list-group-item"><img src="{{asset("maps-icon/2.png")}}" alt="-" border="0" style="max-width: 30px;">
-            <a href="/list/1" >  400     تم الوصول اليهم مؤخراً</a>
+            <a href="/list/2" >  {{$type2}}      تم الوصول اليهم مؤخرا    </a>
         <li class="list-group-item"><img src="{{asset("maps-icon/1.png")}}" alt="-" border="0" style="max-width: 30px;">
-            <a href="/list/2" > 20       ينتظر مساعدةً</a>
+            <a href="/list/1" >{{$type1}}         ينتظر مساعدة    </a>
         </li>
         <li class="list-group-item"><img src="{{asset("maps-icon/3.png")}}" alt="-" border="0" style="max-width: 30px;">
-            <a href="/list/3" >   50    بأنتظار التوثيقً</a>
+            <a href="/list/3" > {{$type3}}   بأنتظار التوثيق   </a>
         </li>
 
 
@@ -130,9 +130,15 @@
         };
         const date = function (date) {
 
-            if (date === null || date === '') {
+
+
+            if (date === null ) {
                 return '3.png';
-            } else {
+            }else if(date === '1990-07-17' ){
+                return '4.png';
+            }
+
+            else {
 
                 var d1 = new Date();
                 var d2 = new Date(date);
@@ -163,6 +169,7 @@
         };
 
         console.log(latAndLong[1]['date']);
+        console.log(latAndLong[1]['category']);
 
         function initialize() {
             let mapOptions = {

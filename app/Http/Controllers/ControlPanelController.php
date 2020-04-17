@@ -7,8 +7,10 @@ use App\Models\Center;
 use App\Models\Lost;
 use App\Models\Majales;
 use App\Models\Point;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
@@ -232,6 +234,83 @@ class ControlPanelController extends Controller
         }
     }
 
+    public function nearby(Request $request)
+    {
+        $city = 0;
+        $updates = DB::table('point')
+            ->where('date', '1990-07-17')
+            ->delete();
+
+        $input_latitude = $request->get("latitude");
+        $input_longitude = $request->get("longitude");
+        $point = new Point();
+        $point->name = session()->get("USER_NAME");
+        $point->city = 0;
+        $mytime = Carbon::now();
+        $point->description = $mytime->toDateTimeString() . "   \n " . "   ( المتطوع : " . session()->get("USER_USERNAME") . ")";
+        $point->date = '1990-07-17';
+        $point->t_number = session()->get("USER_USERNAME");
+        $point->category = 4;
+        $point->latitude = $input_latitude;
+        $point->longitude = $input_longitude;
+
+        $point->save();
+        $use_name = "";
+        try {
+            $use_name = session()->get("USER_NAME");
+
+        } catch (Exception $s) {
+
+        }
+        $mydatetime = Carbon::now();
+        $mydate= $mydatetime->toDateString();
+        $type3 = DB::table('point')->where("category", "<>", 4)->where('date', null)->count();
+        $type2 = DB::table('point')->where("category", "<>", 4)->where('date', '=', $mydate)->count();
+        $type1 = DB::table('point')->where("category", "<>", 4)->where('date', '<', $mydate)->count();
+
+        $latAndLong = Point::orderBy('id')->get()->toArray();
+        return view('roadGuide.maps', compact('latAndLong'), ["user_name" => $use_name,"type1"=>$type1,"type2"=>$type2,"type3"=>$type3]);
+
+//        return redirect("/map")->with('message', "تمت اضافة العائلة - شكرا لك ");
+
+    }
+    public function nearone(Request $request)
+    {
+        $city = 0;
+        $updates = DB::table('point')
+            ->where('date', '1990-07-17')
+            ->update(['date' => null]);
+
+        $input_latitude = $request->get("latitude");
+        $input_longitude = $request->get("longitude");
+        $input_latitude2 = $request->get("latitude2");
+        $input_longitude2 = $request->get("longitude2");
+        $point = new Point();
+        $point->name = session()->get("USER_NAME");
+        $point->city = 0;
+        $mytime = Carbon::now();
+        $point->description = $mytime->toDateTimeString() . "   \n " . "   ( المتطوع : " . session()->get("USER_USERNAME") . ")";
+        $point->date = '1990-07-17';
+        $point->t_number = session()->get("USER_USERNAME");
+        $point->category = 4;
+        $point->latitude = $input_latitude;
+        $point->longitude = $input_longitude;
+
+        $point->save();
+        $use_name = "";
+        try {
+            $use_name = session()->get("USER_NAME");
+
+        } catch (Exception $s) {
+
+        }
+
+        $latAndLong = Point::orderBy('id')->where('latitude',$input_latitude)->where('longitude',$input_longitude)->orWhere('latitude2',$input_latitude2)->where('longitude2',$input_longitude2)->get()->toArray();
+        return view('roadGuide.maps', compact('latAndLong'), ["user_name" => $use_name]);
+
+//        return redirect("/map")->with('message', "تمت اضافة العائلة - شكرا لك ");
+
+    }
 
     //Management Points
     public function new_point()
@@ -268,7 +347,7 @@ class ControlPanelController extends Controller
 
     public function edit_point($id)
     {
-        $points = Point::where("id",$id)->get();
+        $points = Point::where("id", $id)->get();
         return view("/CP/point/edit_point", ["points" => $points]);
 
     }
@@ -284,10 +363,9 @@ class ControlPanelController extends Controller
         $point->latitude = Input::get("latitude");
         $point->longitude = Input::get("longitude");
 
-        if ($point->save())
-        {
+        if ($point->save()) {
             $mesaage = "تم التعديل";
-        }else{
+        } else {
             $mesaage = "لم يتم التعديل";
         }
 
@@ -295,22 +373,22 @@ class ControlPanelController extends Controller
         return redirect("/123456789123456789/all_point")->with('message', $mesaage);
 
     }
+
     public function ensure_delete($id)
-{
+    {
 
-    return view("/CP/point/ensure_delete", ["id" => $id]);
+        return view("/CP/point/ensure_delete", ["id" => $id]);
 
-}
+    }
 
     public function delete_point($id)
     {
 
         $point = Point::find($id);
 
-        if ($point->delete())
-        {
+        if ($point->delete()) {
             $mesaage = "تم الحذف";
-        }else{
+        } else {
             $mesaage = "لم يتم الحذف";
         }
 

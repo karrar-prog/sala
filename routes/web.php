@@ -15,7 +15,7 @@
 //@include("Fadhil.php");
 //@include("Ahmed.php");
 
-@include("ControlPanel.php");
+//@include("ControlPanel.php");
 
 Route::get("/", "MainController@index");
 Route::get("/select-language", "MainController@selectLanguage");
@@ -27,12 +27,15 @@ Route::get("/logout", "UserController@logout");
 
 
 Route::get("/", "PointController@main" );
-Route::post('/nearby', "PointController@nearby");
+
 Route::get('/list/{c}', "PointController@index");
 Route::get('/map' , 'PointController@shwoMaps');
 
 Route::get("/new_family", "ControlPanelController@new_point");
 
+Route::post('/nearby', "ControlPanelController@nearby");
+
+Route::post('/nearone', "ControlPanelController@nearone");
 
 Route::post("/123456789123456789/insert_point", "ControlPanelController@insert_point");
 
