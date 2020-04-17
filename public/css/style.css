@@ -1,0 +1,210 @@
+.bg-vg-dark, .btn-vg-dark, .btn-vg-light:hover {
+    background-color: #1b656d;
+}
+.bg-vg-light, .btn-vg-light, .btn-vg-dark:hover {
+    background-color: #36b6c2;
+}
+.btn-vg-dark, .btn-vg-light {
+    color: #ffffff;
+}
+.text-vg-dark{
+    color: #1b656d;
+}
+.text-vg-light {
+    color: #36b6c2;
+}
+.modal-special {
+    width: auto;
+}
+.fa-special {
+    width: 14px;
+    margin-top: 2px;
+}
+@media (min-width: 576px) {
+    .modal-special {
+        width: 500px!important;
+    }
+}
+.text-inherit {
+    text-align: inherit!important;
+}
+.font-height-normal {
+    line-height: normal!important;
+}
+.bg-aqua-gradient {
+    background: -webkit-linear-gradient(40deg, rgb(32, 150, 255), rgb(5, 255, 163));
+    background:    -moz-linear-gradient(40deg, rgb(32, 150, 255), rgb(5, 255, 163));
+    background:      -o-linear-gradient(40deg, rgb(32, 150, 255), rgb(5, 255, 163));
+    background:         linear-gradient(40deg, rgb(32, 150, 255), rgb(5, 255, 163));
+}
+.bg-orange-gradient {
+    background: -webkit-linear-gradient(40deg, rgb(255, 216, 111), rgb(252, 98, 98));
+    background:    -moz-linear-gradient(40deg, rgb(255, 216, 111), rgb(252, 98, 98));
+    background:      -o-linear-gradient(40deg, rgb(255, 216, 111), rgb(252, 98, 98));
+    background:         linear-gradient(40deg, rgb(255, 216, 111), rgb(252, 98, 98));
+}
+.bg-purple-gradient {
+    background: -webkit-linear-gradient(40deg, rgb(255, 110, 196), rgb(120, 115, 245));
+    background:    -moz-linear-gradient(40deg, rgb(255, 110, 196), rgb(120, 115, 245));
+    background:      -o-linear-gradient(40deg, rgb(255, 110, 196), rgb(120, 115, 245));
+    background:         linear-gradient(40deg, rgb(255, 110, 196), rgb(120, 115, 245));
+}
+.bg-blue-gradient {
+    background: -webkit-linear-gradient(40deg, rgb(69, 202, 252), rgb(48, 63, 159));
+    background:    -moz-linear-gradient(40deg, rgb(69, 202, 252), rgb(48, 63, 159));
+    background:      -o-linear-gradient(40deg, rgb(69, 202, 252), rgb(48, 63, 159));
+    background:         linear-gradient(40deg, rgb(69, 202, 252), rgb(48, 63, 159));
+}
+.bg-teal-gradient {
+    background: -webkit-linear-gradient(40deg, rgba(111, 66, 193, 0.80), rgba(40, 215, 219, 0.89));
+    background:    -moz-linear-gradient(40deg, rgba(111, 66, 193, 0.80), rgba(40, 215, 219, 0.89));
+    background:      -o-linear-gradient(40deg, rgba(111, 66, 193, 0.80), rgba(40, 215, 219, 0.89));
+    background:         linear-gradient(40deg, rgba(111, 66, 193, 0.80), rgba(40, 215, 219, 0.89));
+}
+.bg-olive-gradient {
+    background: -webkit-linear-gradient(40deg, rgba(234, 170, 25, 0.83), rgba(99, 187, 10, 0.65));
+    background:    -moz-linear-gradient(40deg, rgba(234, 170, 25, 0.83), rgba(99, 187, 10, 0.65));
+    background:      -o-linear-gradient(40deg, rgba(234, 170, 25, 0.83), rgba(99, 187, 10, 0.65));
+    background:         linear-gradient(40deg, rgba(234, 170, 25, 0.83), rgba(99, 187, 10, 0.65));
+}
+.btn.bg-aqua-gradient, .btn.bg-orange-gradient, .btn.bg-purple-gradient, .btn.bg-blue-gradient, .btn.bg-teal-gradient, .btn.bg-olive-gradient {
+    border: 0;
+    color: #ffffff;
+}
+.shadow-special, .btn-shadow {
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+}
+.btn-shadow:active, .btn-shadow:hover, .btn-shadow:focus {
+    box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+}
+.shadow-card, .shadow-card-body {
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+}
+.shadow-card-heading {
+    box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+}
+.shake {
+    animation: shake 0.8s cubic-bezier(.36,.07,.19,.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+@keyframes shake {
+    10%, 90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+    20%, 80% {
+        transform: translate3d(2px, 0, 0);
+    }
+    30%, 50%, 70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+    40%, 60% {
+        transform: translate3d(4px, 0, 0);
+    }
+}
+
+/* Adeua and Zuarat */
+
+.majales-zuarat
+{
+    background-color: white;
+}
+.gallery-images
+{
+    border: 2px solid #1b1e21;
+    overflow: hidden;
+    cursor: pointer;
+}
+.gallery-images .image
+{
+    -webkit-transition: all 2s ease;
+    -moz-transition: all 2s ease;
+    -ms-transition: all 2s ease;
+    transition: all 2s ease;
+}
+.image:hover
+{
+    width: 150% !important;
+    height: 150% !important;
+}
+.image-btn
+{
+    top: 70%;
+    position: absolute;
+    border-radius: 20px;
+    display: none;
+}
+.image:hover + .image-btn
+{
+    display: block;
+}
+.module-text {
+    margin: 0 0 1em 0;
+    overflow: hidden;
+    padding-bottom: 17px;
+
+}
+.fade-text {
+    position: relative;
+    height: 10em;
+}
+.fade-text:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 5em;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5),
+    rgba(255, 255, 255, 0.6),
+    rgba(255, 255, 255, 0.9),
+    rgba(255, 255, 255, 1)
+    100%);
+}
+.card-majales-zuarat
+{
+    border-radius: 15px 30px;
+    overflow: hidden;
+}
+.card-majales-zuarat h3, .modal-header h4
+{
+    color: #0099cc;
+}
+.rotate-90
+{
+    -ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Safari 3-8 */
+    transform: rotate(90deg);
+}
+@media (min-width: 576px) {
+    .modal-image {
+        max-width: 90% !important;
+        margin: 1.75rem auto;
+    }
+}
+.pagination
+{
+    padding-right: 0;
+}
+/* End Adeua and Zuarat */
+
+/*-------------------------------------------------
+@Fadhil style
+-------------------------------------------------*/
+.fill {object-fit: fill;}
+.aa-input-container {
+    position: relative; }
+.aa-input-icon {
+    height: 16px;
+    width: 16px;
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    fill: #6c757d; }
+
+/*-------------------------------------------------
+@End
+-------------------------------------------------*/
