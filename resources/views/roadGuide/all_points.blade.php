@@ -83,6 +83,7 @@
                         @if(isset($_COOKIE["USER_SESSION"]))
                             <div class="card-body">
                                 <a href="/validate/{{$point->id}}" class="btn btn-success">
+
                                     <svg class="bi bi-check-all" width="1em" height="1em" viewBox="0 0 16 16"
                                          fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd"
@@ -93,6 +94,8 @@
                                     وصلت اليهم الان </a>
 
                             </div>
+                            <h8>اضغط وصلت عند تسليمك السلة او المساعدة</h8>
+
                         @endif
 
 

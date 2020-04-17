@@ -116,9 +116,9 @@
 
 
 @section('script')
+    {{--AIzaSyBYPOqCep_Cx1apaQw8Yz6rsywzNGtwwjc--}}
 
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYPOqCep_Cx1apaQw8Yz6rsywzNGtwwjc">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKEDfYAAbtGNwvEmuYaAJIgWk5ST3Ahdk">
     </script>
     <script>
         const latAndLong ={!! json_encode($latAndLong) !!};

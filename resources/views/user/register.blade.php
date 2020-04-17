@@ -6,8 +6,9 @@
             <div class="col-12 d-flex justify-content-center">
                 <form class="col-12 col-sm-6 bg-white text-center border shadow-sm p-5" action="/register" method="post">
                     <p class="h4 mb-4">الانضمام الى فرق الخير</p>
+                    <p class="h4 mb-4">{{$username}}</p>
 
-                    @if(count($errors))
+                @if(count($errors))
                         <div class="alert alert-danger text-right">
                             <ul class="pr-3 mb-0">
                                 @foreach($errors->all() as $error)
@@ -22,7 +23,7 @@
                     @endif
 
                     {{ csrf_field() }}
-                    <input type="text" value="{{$username}}" disabled name="name" class="form-control mb-4" placeholder="اسم الفريق">
+                    <input type="text" value="{{$username}}" hidden name="name" class="form-control mb-4" placeholder="اسم الفريق">
                     <input type="text" name="username" class="form-control mb-4" placeholder="رقم الهاتف المتطوع">
                     <input type="password" name="password" class="form-control mb-4" placeholder="كلمة المرور">
                     <input type="password" name="password_confirmation" class="form-control mb-4" placeholder="اعد كتابة كلمة المرور">

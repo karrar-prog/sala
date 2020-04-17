@@ -281,6 +281,11 @@ class ControlPanelController extends Controller
         return view('user.contact');
 
     }
+    public function my_activity()
+    {
+        return view('user.my_activity');
+
+    }
 
     public function nearone(Request $request)
     {

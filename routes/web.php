@@ -36,6 +36,7 @@ Route::get("/new_family", "ControlPanelController@new_point");
 Route::post('/nearby', "ControlPanelController@nearby");
 
 Route::post('/nearone', "ControlPanelController@nearone");
+Route::get('/my_activity', "ControlPanelController@my_activity");
 
 Route::post("/123456789123456789/insert_point", "ControlPanelController@insert_point");
 

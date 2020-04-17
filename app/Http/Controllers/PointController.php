@@ -18,33 +18,19 @@ class PointController extends Controller
         $mydate = $mydatetime->toDateString();
 
         $city = 0;
-        if ($c == 1) {
+        if ($c == "1") {
             $allPoints = Point::OrderBy("t_number")->where("city", $city)->where("category", "<>", 4)->where('date', '<', $mydate)
-                ->where("category", "<>", 4)
                 ->get();
 
-
-        } elseif ($c = 2) {
+        } elseif ($c == "2") {
             $allPoints = Point::OrderBy("t_number")->where("category", "<>", 4)->where('date', '=', $mydate)
-                ->where("category", "<>", 4)
                 ->get();
-
-
-        } elseif ($c = 3) {
-            $allPoints = Point::OrderBy("t_number")->where("category", "<>", 4)->where('date', null)
-                ->get();
-
 
         } else {
-
-            // wating
-            $allPoints = Point::OrderBy("t_number")->where("city", $city)->where("category", $c)
-                ->where("category", "<>", 4)
+            $allPoints = DB::table('point')->where("category", "<>", 4)->where('date',  "=" ,null)
                 ->get();
 
-
         }
-
         $use_name = "";
         try {
             $use_name = session()->get("USER_NAME");
