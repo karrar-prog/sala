@@ -1,4 +1,4 @@
-@extends("CP.layout.layout")
+@extends("layout.secondary_layout")
 
 
 
