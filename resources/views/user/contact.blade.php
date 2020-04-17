@@ -13,7 +13,9 @@
                     </svg>
                     يرجى التواصل مع الكادر لاعطائك الصلاحية
                 </div>
-
+               <div class="card-header">
+                 prog.karrar@gmail.com
+               </div>
 
                 <a class="btn btn-shadow" href="tel:07711433222">
                     <svg class="bi bi-phone" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
@@ -30,5 +32,23 @@
 
         </div>
     </div>
+
+
+        <div class="container" style="margin-top: 60px;">
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center">
+                    <div class="card text-center">
+                        <div class="card-header">
+
+                          اذا لم تكن احد المتطوعين
+                        </div>
+                        <div class="card-header">
+                     لازال بأمكانك الوصول الى المستحقين من خلال الخارطة  ويمكنك اضافة عائلتك او عائلة جارك على الخارطة والاستفادة من بقية الخدمات
+                        </div>
+
+
+
+                </div>
+            </div>
 
 @endsection
