@@ -22,8 +22,8 @@
                     @endif
 
                     {{ csrf_field() }}
-                    <input type="text" name="name" class="form-control mb-4" placeholder="اسم الشخص - اسم الفريق">
-                    <input type="text" name="username" class="form-control mb-4" placeholder="رقم الهاتف">
+                    <input type="text" value="{{$username}}" disabled name="name" class="form-control mb-4" placeholder="اسم الفريق">
+                    <input type="text" name="username" class="form-control mb-4" placeholder="رقم الهاتف المتطوع">
                     <input type="password" name="password" class="form-control mb-4" placeholder="كلمة المرور">
                     <input type="password" name="password_confirmation" class="form-control mb-4" placeholder="اعد كتابة كلمة المرور">
 

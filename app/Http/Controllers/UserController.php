@@ -10,7 +10,16 @@ use Illuminate\Support\Facades\Input;
 class UserController extends Controller
 {
     public function register() {
-        return view("user.register");
+        $username = session()->get("USER_NAME");
+        if($username)
+        {
+            return view("user.register",["username"=>$username]);
+        }else
+        {
+            return view('user.contact');
+
+        }
+
     }
 
     public function registerValidation(Request $request) {

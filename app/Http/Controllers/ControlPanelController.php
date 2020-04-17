@@ -263,17 +263,25 @@ class ControlPanelController extends Controller
 
         }
         $mydatetime = Carbon::now();
-        $mydate= $mydatetime->toDateString();
+        $mydate = $mydatetime->toDateString();
         $type3 = DB::table('point')->where("category", "<>", 4)->where('date', null)->count();
         $type2 = DB::table('point')->where("category", "<>", 4)->where('date', '=', $mydate)->count();
         $type1 = DB::table('point')->where("category", "<>", 4)->where('date', '<', $mydate)->count();
 
         $latAndLong = Point::orderBy('id')->get()->toArray();
-        return view('roadGuide.maps', compact('latAndLong'), ["user_name" => $use_name,"type1"=>$type1,"type2"=>$type2,"type3"=>$type3]);
+        return view('roadGuide.maps', compact('latAndLong'), ["user_name" => $use_name, "type1" => $type1, "type2" => $type2, "type3" => $type3]);
 
 //        return redirect("/map")->with('message', "تمت اضافة العائلة - شكرا لك ");
 
     }
+
+
+    public function contact()
+    {
+        return view('user.contact');
+
+    }
+
     public function nearone(Request $request)
     {
         $city = 0;
@@ -305,7 +313,7 @@ class ControlPanelController extends Controller
 
         }
 
-        $latAndLong = Point::orderBy('id')->where('latitude',$input_latitude)->where('longitude',$input_longitude)->orWhere('latitude2',$input_latitude2)->where('longitude2',$input_longitude2)->get()->toArray();
+        $latAndLong = Point::orderBy('id')->where('latitude', $input_latitude)->where('longitude', $input_longitude)->orWhere('latitude2', $input_latitude2)->where('longitude2', $input_longitude2)->get()->toArray();
         return view('roadGuide.maps', compact('latAndLong'), ["user_name" => $use_name]);
 
 //        return redirect("/map")->with('message', "تمت اضافة العائلة - شكرا لك ");
@@ -329,8 +337,40 @@ class ControlPanelController extends Controller
         $point->category = Input::get("category");
         $point->latitude = Input::get("latitude");
         $point->longitude = Input::get("longitude");
+        $user_name = session()->get("USER_NAME");
+        if ($user_name) {
+            $mydatetime = Carbon::now();
+            $mydate = $mydatetime->toDateString();
+            $point->date = $mydate;
+            $point->username = $user_name;
 
+
+        }
         $point->save();
+
+        return redirect("/")->with('message', "تمت اضافة العائلة - شكرا لك ");
+
+
+    }
+
+    public function valid_point($id)
+    {
+
+
+        $user_name = session()->get("USER_NAME");
+        if ($user_name) {
+            $point = Point::find($id);
+
+                $mydatetime = Carbon::now();
+                $mydate = $mydatetime->toDateString();
+                $point->date = $mydate;
+                $point->username = $user_name;
+                $point->save();
+
+
+
+
+        }
 
         return redirect("/")->with('message', "تمت اضافة العائلة - شكرا لك ");
 

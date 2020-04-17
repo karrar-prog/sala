@@ -40,6 +40,8 @@ Route::post('/nearone', "ControlPanelController@nearone");
 Route::post("/123456789123456789/insert_point", "ControlPanelController@insert_point");
 
 Route::get("/123456789123456789/all_point", "ControlPanelController@all_point");
+Route::get("/contact", "ControlPanelController@contact");
+Route::get("/validate/{id}", "ControlPanelController@valid_point");
 
 Route::get("/123456789123456789/edit_point/{id}", "ControlPanelController@edit_point");
 Route::post("/123456789123456789/update_point/{id}", "ControlPanelController@update_point");

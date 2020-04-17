@@ -16,16 +16,25 @@
     @if(isset($_COOKIE["USER_SESSION"]))
         <div class="card text-center">
             <div class="card-header">
-                <h5 class="card-title">اهلا بكم</h5>
+                <h5 class="card-title">  <h5 class="card-title">{{$user_name}}</h5>
+
+                     اهلا بكم</h5>
 
             </div>
 
             <div class="card-body">
-                <h5 class="card-title">{{$user_name}}</h5>
-
-                <p class="card-text"> المتطوع {{$phone}}</p>
+                <a style="width: 230px;" class="btn btn-shadow">
+                    <svg class="bi bi-person-plus" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M11 14s1 0 1-1-1-4-6-4-6 3-6 4 1 1 1 1h10zm-9.995-.944v-.002.002zM1.022 13h9.956a.274.274 0 00.014-.002l.008-.002c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664a1.05 1.05 0 00.022.004zm9.974.056v-.002.002zM6 7a2 2 0 100-4 2 2 0 000 4zm3-2a3 3 0 11-6 0 3 3 0 016 0zm4.5 0a.5.5 0 01.5.5v2a.5.5 0 01-.5.5h-2a.5.5 0 010-1H13V5.5a.5.5 0 01.5-.5z" clip-rule="evenodd"/>
+                        <path fill-rule="evenodd" d="M13 7.5a.5.5 0 01.5-.5h2a.5.5 0 010 1H14v1.5a.5.5 0 01-1 0v-2z" clip-rule="evenodd"/>
+                    </svg>
+                    اضافة متطوع اخر من فريقك
+                </a>
             {{--<p class="card-text">{{$user_name}}</p>--}}
-            <a href="/new_family" class="btn btn-primary">اضافة عائلة الان</a>
+            <a style="width: 230px;" href="/new_family" class="btn btn-shadow"><svg class="bi bi-geo-alt" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M8 16s6-5.686 6-10A6 6 0 002 6c0 4.314 6 10 6 10zm0-7a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/>
+                </svg>اضافة عائلة الان</a>
+
         </div>
         @else
         <div class="alert alert-success" role="alert">سلة خير - خارطة و معلومات العوائل المتضرره والمستحقة الذين تم توثيقهم
@@ -43,18 +52,16 @@
 
     <div class="container py-4">
 
-        {{--<div style="width: 100%; height: calc(100% - 134px);">--}}
-        {{--<div class="w-100 h-100" id="map-canvas"></div>--}}
-        {{--</div>--}}
 
         <li class="list-group-item"><img src="{{asset("maps-icon/2.png")}}" alt="-" border="0" style="max-width: 30px;">
             <a href="/list/2" >  {{$type2}}      تم الوصول اليهم مؤخرا    </a>
         <li class="list-group-item"><img src="{{asset("maps-icon/1.png")}}" alt="-" border="0" style="max-width: 30px;">
-            <a href="/list/3" >{{$type3}}         ينتظر مساعدة    </a>
+            <a href="/list/1" >{{$type1}}         ينتظر مساعدة    </a>
         </li>
         <li class="list-group-item"><img src="{{asset("maps-icon/3.png")}}" alt="-" border="0" style="max-width: 30px;">
-            <a href="/list/1" > {{$type1}}   بأنتظار التوثيق   </a>
+            <a href="/list/3" > {{$type3}}   بأنتظار التوثيق   </a>
         </li>
+
 
         <li class="list-group-item">
             <a href="/map" >

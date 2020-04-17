@@ -82,7 +82,7 @@
 
                         @if(isset($_COOKIE["USER_SESSION"]))
                             <div class="card-body">
-                                <a href="/new_family" class="btn btn-success">
+                                <a href="/validate/{{$point->id}}" class="btn btn-success">
                                     <svg class="bi bi-check-all" width="1em" height="1em" viewBox="0 0 16 16"
                                          fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd"
