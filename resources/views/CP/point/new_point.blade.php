@@ -39,7 +39,7 @@
 
                     <div class="form-group ">
                         <label for="input_t_number">رقم الهاتف</label>
-                        <input type="number" class="form-control" id="input_t_number"  name="t_number" placeholder="">
+                        <input class="form-control" id="input_t_number"  name="t_number" placeholder="">
                     </div>
 
 
