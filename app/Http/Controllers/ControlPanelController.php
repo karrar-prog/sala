@@ -358,7 +358,6 @@ class ControlPanelController extends Controller
 
 
     }
-
     public function valid_point($id)
     {
 
@@ -384,7 +383,32 @@ class ControlPanelController extends Controller
 
 
     }
+    public function family_search(Request $request)
+    {
 
+
+        $t_search = $request->get("t_search");
+
+        $allPoints = Point::where('name','like','%' .$t_search . '%')->orWhere('t_number','like','%' .$t_search . '%')->orWhere('description','like','%' .$t_search . '%')->get();
+
+        $mydatetime = Carbon::now();
+        $mydate = $mydatetime->toDateString();
+
+
+
+        $use_name = "";
+        try {
+            $use_name = session()->get("USER_NAME");
+
+        } catch (Exception $s) {
+
+        }
+        $type3 = DB::table('point')->where("category", "<>", 4)->where('date', null)->count();
+        $type2 = DB::table('point')->where("category", "<>", 4)->where('date', '=', $mydate)->count();
+        $type1 = DB::table('point')->where("category", "<>", 4)->where('date', '<', $mydate)->count();
+        return view('roadGuide.all_points')->with([
+            "allPoints" => $allPoints, "user_name" => $use_name, "type1" => $type1, "type2" => $type2, "type3" => $type3]);
+    }
 
     public function all_point()
     {
@@ -392,6 +416,8 @@ class ControlPanelController extends Controller
         $points = Point::all();
         return view("/CP/point/all_point", ["points" => $points]);
     }
+
+
 
     public function my_family()
     {

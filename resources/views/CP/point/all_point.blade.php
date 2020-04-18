@@ -21,12 +21,19 @@
 
     {{--</div>--}}
 
-<div class="container col-7 mb-4" style="margin-top: -95px">
+<div class="container col-7 mb-4" >
 
     @include("items.cities")
 
+
 </div>
 
+    <div >
+
+
+
+
+           </div>
     @foreach($points as $point)
         <li class="list-group-item">
             <div class="container">
@@ -38,10 +45,16 @@
                     </div>
                     <div class="col-sm-3">
 
-                           {{$point->description}}
+                        {{$point->description}}
 
 
                     </div>
+                    <div class="col-sm-3">
+                        تم الوصول بواسطة:  {{$point->userphone}}
+
+
+                    </div>
+
                     <div class="col-sm">
                         @if($point->date == null)
                             لم يتم التوثيق بعد

@@ -41,7 +41,25 @@
             </div>
 
         </div>
+        <div class="container">
+            <div class="row">
+                <form class="col-12 col-sm-6 " method="post" action="/family_search">
+                    @csrf
+                    <div class="col-sm-3 ">
+                        <input  type="text" class="form-control" id="input_name" name="t_search" required placeholder="ابحث عن  عائلة بواسطة الاسم او رقم هاتف او التفاصيل">
 
+
+                    </div>
+                    <div style="margin-top: 10px ; margin-bottom: 10px" class="col-sm-3">
+
+                        <button  type="submit" class="btn btn-primary ">    بحث    </button>
+
+
+                    </div>
+                </form>
+
+            </div>
+        </div>
 
         <ul>
             @php $i=1; @endphp
@@ -53,7 +71,9 @@
 
                         اخر وصول لهم كان في تأريخ
                         {{$point->date}}
+
                     </div>
+                    تم الوصول بواسطة :{{$point->username}}
                     <div class="card-body ">
                         <p class="card-text">  {{$point->description}}</p>
                         @if(isset($_COOKIE["USER_SESSION"]))
