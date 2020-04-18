@@ -67,7 +67,6 @@
 
     <div class="container py-4">
 
-
         <li class="list-group-item"><img src="{{asset("maps-icon/2.png")}}" alt="-" border="0" style="max-width: 30px;">
             <a href="/list/2" >  {{$type2}}      تم الوصول اليهم مؤخرا    </a>
         <li class="list-group-item"><img src="{{asset("maps-icon/1.png")}}" alt="-" border="0" style="max-width: 30px;">

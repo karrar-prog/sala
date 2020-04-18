@@ -66,7 +66,8 @@
 
                     <div class="row">
                         <div id="message1" class="alert alert-primary" role="alert">
-                            يجب الضغط على ( الكشف عن موقعي الحالي) واعطاء صلاحية الوصول الى الموقع الجغرافي  - اضغط حفظ عند ظهور زر الحفظ
+                            اذا واجهت مشكلة في اكتشاف موقعك -افتح رابط سلة الخير في متصفح كروم (chrome) أو سفاري (safari)
+
                             <a id ="btn_get_location"class="btn btn-outline-info w-100" onclick="getLocation()"><i class="fa fa-street-view fa-2x">   </i>    الكشف عن موقعي الحالي   </a>
                                  </div>
                         <button name="location" style="visibility: hidden"  id="btn_location" type="submit" class="btn btn-primary w-100 mt-5"><i class="fa fa-save fa-2x">   </i>    حفظ    </button>
@@ -75,7 +76,7 @@
 
 
 
-            </div>
+
 
 
 
@@ -93,8 +94,10 @@
                         </div>
                     </div>
                 </form>
+
             </div>
         </div>
+
     </div>
 @endsection
 
