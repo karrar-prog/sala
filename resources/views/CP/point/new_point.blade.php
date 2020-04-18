@@ -65,45 +65,28 @@
                     </div>
 
                     <div class="row">
-                        <div class="col">
-                        </div>
-                        <div class="col">
-                            <a class="btn btn-outline-info w-100" onclick="getLocation()"><i class="fa fa-street-view fa-2x">   </i>    حفظ موقعي الحالي    </a>
 
-                            <p id="demo"></p>
-                        </div>
-                        <div class="col">
+                            <a id ="btn_get_location"class="btn btn-outline-info w-100" onclick="getLocation()"><i class="fa fa-street-view fa-2x">   </i>    الكشف عن موقعي الحالي   </a>
+                            <button name="location" style="visibility: hidden"  id="btn_location" type="submit" class="btn btn-primary w-100 mt-5"><i class="fa fa-save fa-2x">   </i>    حفظ    </button>
 
-                        </div>
+                            <h6>يجب الضغط على ( الكشف عن موقعي الحالي) واعطاء صلاحية الوصول الى الموقع الجغرافي  - اضغط حفظ عند ظهور زر الحفظ</h6>
+
+
+
                     </div>
-
 
 
 
                     <div class="row">
                         <div class="col">
-                            <label for="text">خط الطول</label>
-                            <input type="text" class="form-control" id="input_latitude"  name="latitude"  required placeholder="يجب جلب البيانات">
+
+                            <input style="visibility: hidden;width: 20px" type="text" class="form-control" id="input_latitude"  name="latitude"  required placeholder="يجب جلب البيانات">
 
                         </div>
                         <div class="col">
 
-                            <label for="text">خط العرض</label>
-                            <input type="text" class="form-control" id="input_longitude"  name="longitude"  required placeholder="يجب جلب البيانات">
 
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-
-                        </div>
-                        <div class="col">
-
-                            <button type="submit" class="btn btn-primary w-100 mt-5"><i class="fa fa-street-view fa-2x">   </i>    حفظ    </button>
-
-
-                        </div>
-                        <div class="col">
+                            <input style="visibility: hidden;width: 20px" type="text" class="form-control" id="input_longitude"  name="longitude"  required placeholder="يجب جلب البيانات">
 
                         </div>
                     </div>
@@ -121,7 +104,7 @@
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(showPosition, showError);
             } else {
-                x.innerHTML = "Geolocation is not supported by this browser.";
+                x.innerHTML = "لم يتم جلب الموقع الجغرافي";
             }
         }
 
@@ -131,6 +114,9 @@
             $("#input_longitude").val(position.coords.longitude);
             $("#input_latitude").attr("readonly","readonly");
             $("#input_longitude").attr("readonly","readonly");
+
+            document.getElementById('btn_get_location').style.visibility = 'hidden';
+            document.getElementById('btn_location').style.visibility = 'visible';
         }
 
         function showError(error) {
