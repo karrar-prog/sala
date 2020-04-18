@@ -455,7 +455,7 @@ class ControlPanelController extends Controller
         }
 
 
-        return redirect("/123456789123456789/all_point")->with('message', $mesaage);
+        return redirect("/my_family")->with('message', $mesaage);
 
     }
 
