@@ -50,5 +50,5 @@ Route::post("/123456789123456789/update_point/{id}", "ControlPanelController@upd
 Route::get("/123456789123456789/ensure_delete/{id}", "ControlPanelController@ensure_delete");
 Route::get("/123456789123456789/delete_point/{id}", "ControlPanelController@delete_point");
 
-Route::get("/hfhfhghhgfjjks9999888register", "UserController@register2");
+Route::get("/admin_register", "UserController@register2");
 Route::get("/my_family", "ControlPanelController@my_family");
