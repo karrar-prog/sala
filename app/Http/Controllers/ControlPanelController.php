@@ -439,23 +439,39 @@ class ControlPanelController extends Controller
     public function ensure_delete($id)
     {
 
-        return view("/CP/point/ensure_delete", ["id" => $id]);
+
+        if (session()->get("USER_NAME"))
+        {
+            return view("/CP/point/ensure_delete", ["id" => $id]);
+
+        }else
+        {
+            return view("/");
+
+        }
 
     }
 
     public function delete_point($id)
     {
+        if (session()->get("USER_NAME"))
+        {
+            $point = Point::find($id);
 
-        $point = Point::find($id);
+            if ($point->delete()) {
+                $mesaage = "تم الحذف";
+            } else {
+                $mesaage = "لم يتم الحذف";
+            }
 
-        if ($point->delete()) {
-            $mesaage = "تم الحذف";
-        } else {
-            $mesaage = "لم يتم الحذف";
+
+            return redirect("/my_family")->with('message', $mesaage);
+
+        }else
+        {
+            $mesaage = "ليس لديك الصلاحية";
+            return redirect("/my_family")->with('message', $mesaage);
         }
-
-
-        return redirect("/my_family")->with('message', $mesaage);
 
     }
 
