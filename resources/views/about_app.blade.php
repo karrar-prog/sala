@@ -31,13 +31,24 @@
                     </svg>
                     اضافة متطوع اخر من فريقك
                 </a>
-              </div>
-              <div class="card-body">
+            </div>
+                <div class="card-body">
 
-            {{--<p class="card-text">{{$user_name}}</p>--}}
+                    <a href="my_family" style="width: 230px;" class="btn btn-shadow">
+                        <svg class="bi bi-list-task" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M2 2.5a.5.5 0 00-.5.5v1a.5.5 0 00.5.5h1a.5.5 0 00.5-.5V3a.5.5 0 00-.5-.5H2zM3 3H2v1h1V3z" clip-rule="evenodd"/>
+                            <path d="M5 3.5a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zM5.5 7a.5.5 0 000 1h9a.5.5 0 000-1h-9zm0 4a.5.5 0 000 1h9a.5.5 0 000-1h-9z"/>
+                            <path fill-rule="evenodd" d="M1.5 7a.5.5 0 01.5-.5h1a.5.5 0 01.5.5v1a.5.5 0 01-.5.5H2a.5.5 0 01-.5-.5V7zM2 7h1v1H2V7zm0 3.5a.5.5 0 00-.5.5v1a.5.5 0 00.5.5h1a.5.5 0 00.5-.5v-1a.5.5 0 00-.5-.5H2zm1 .5H2v1h1v-1z" clip-rule="evenodd"/>
+                        </svg>
+                        عائلاتي
+                    </a>
+                </div>
+                <div class="card-body">
+
+                {{--<p class="card-text">{{$user_name}}</p>--}}
             <a style="width: 230px;" href="/new_family" class="btn btn-shadow"><svg class="bi bi-geo-alt" width="1.5em" height="1.5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M8 16s6-5.686 6-10A6 6 0 002 6c0 4.314 6 10 6 10zm0-7a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/>
-                </svg>اضافة عائلة الان</a>
+                </svg>اضافة عائلة جديدة</a>
             </div>
         </div>
         @else

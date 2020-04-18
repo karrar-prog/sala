@@ -1,4 +1,6 @@
-@extends("CP.layout.layout")
+@extends("layout.secondary_layout")
+
+
 @section("content")
     <div class="container">
 
@@ -16,35 +18,34 @@
                 </div>
             @endif
             @foreach($points as $point)
-                    <div class="col-12 d-flex justify-content-center">
+                    <div class="col-12 d-flex justify-content-center" style="margin-bottom: 100px">
                         <form class="col-12 col-sm-6" method="post" action="/123456789123456789/update_point/{{$point->id}}">
                             @csrf
                             <div class="form-group">
-                                <label for="input_id">تسلسل</label>
+                                <label for="input_id">تسلسل العائلة</label>
                                 <input type="text" class="form-control" id="input_id" name="id" required readonly value="{{$point->id}}">
                             </div>
 
                             <div class="form-group">
-                                <label for="input_name">اسم المكان</label>
+                                <label for="input_name">اسم العائلة</label>
                                 <input type="text" class="form-control" id="input_name" name="name" value="{{$point->name}}">
                             </div>
                             <div class="form-group ">
-                                <label for="input_t_number">رقم العمود</label>
-                                <input type="number" class="form-control" id="input_t_number" name="t_number" value="{{$point->t_number}}" >
+                                <label for="input_t_number">رقم الهاتف</label>
+                                <input  class="form-control" id="input_t_number" name="t_number" value="{{$point->t_number}}" >
                             </div>
                             <div class="form-group">
-                                <label for="input_category">النوع</label>
+                                <label for="input_category">المستوى المعيشي</label>
                                 <select id="input_category" name="category" required class="form-control">
-                                    <option selected value=""></option>
-                                    <option value="{{\App\Enums\PointCategory::MAWAKEP}}">موكب</option>
-                                    <option value="{{\App\Enums\PointCategory::LOST_CENTER}}">مركز تائهين</option>
-                                    <option value="{{\App\Enums\PointCategory::MEDICAL_CENTER}}">مركز صحي</option>
-                                    <option value="{{\App\Enums\PointCategory::PUBLIC}}">نقاط عامة</option>
-                                    <option value="{{\App\Enums\PointCategory::REFERENDUM_CENTER}}">مراكز استفتاءات</option>
+
+                                    <option selected value="1">مستحق</option>
+                                    <option value="2">فقير</option>
+                                    <option value="3">دون مستوى الفقر</option>
+                                    <option value="4">لايوجد معيل</option>
                                 </select>
                             </div>
                             <div class="form-group ">
-                                <label for="input_description">وصف</label>
+                                <label for="input_description">تفاصيل</label>
                                 <input type="text" class="form-control" id="input_description" name="description"
                                        value="{{$point->description}}">
                             </div>
@@ -52,7 +53,7 @@
                                 <div class="col">
                                 </div>
                                 <div class="col">
-                                    <a class="btn btn-outline-info w-100"  onclick="getLocation()">جلب الموقع</a>
+                                    <a class="btn btn-outline-info w-100"  onclick="getLocation()">حفظ موقعي الحالي </a>
                                     <p id="demo"></p>
                                 </div>
                                 <div class="col">
@@ -60,12 +61,12 @@
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <label for="text">خط الطول</label>
+                                    <label for="text">معلومات خط العرض</label>
                                     <input type="text" class="form-control" id="input_latitude" name="latitude" required
                                            value="{{$point->latitude}}">
                                 </div>
                                 <div class="col">
-                                    <label for="text">خط العرض</label>
+                                    <label for="text">معلومات خط العرض</label>
                                     <input type="text" class="form-control" id="input_longitude" name="longitude" required
                                            value="{{$point->longitude}}">
                                 </div>
@@ -74,12 +75,13 @@
                                 <div class="col">
                                 </div>
                                 <div class="col">
-                                    <button type="submit" class="btn btn-primary w-100 mt-5"><i class="fa fa-save fa-2x"> </i>   حفظ التعديلات   </button>
+                                    <button type="submit" class="btn btn-primary w-100 mt-5">   حفظ هذه التعديلات   </button>
                                 </div>
                                 <div class="col">
                                 </div>
                             </div>
                         </form>
+
                     </div>
             @endforeach
 

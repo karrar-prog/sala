@@ -51,7 +51,6 @@
                             <option value="2">فقير</option>
                             <option value="3">دون مستوى الفقر</option>
                             <option value="4">لايوجد معيل</option>
-                            {{--<option value="{{\App\Enums\PointCategory::REFERENDUM_CENTER}}">مراكز استفتاءات</option>--}}
 
 
                         </select>
@@ -68,7 +67,7 @@
                         <div class="col">
                         </div>
                         <div class="col">
-                            <a class="btn btn-outline-info w-100" onclick="getLocation()"><i class="fa fa-street-view fa-2x">   </i>    جلب الموقع    </a>
+                            <a class="btn btn-outline-info w-100" onclick="getLocation()"><i class="fa fa-street-view fa-2x">   </i>    حفظ موقعي الحالي    </a>
 
                             <p id="demo"></p>
                         </div>

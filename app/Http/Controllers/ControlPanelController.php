@@ -281,6 +281,7 @@ class ControlPanelController extends Controller
         return view('user.contact');
 
     }
+
     public function my_activity()
     {
         return view('user.my_activity');
@@ -361,23 +362,25 @@ class ControlPanelController extends Controller
     public function valid_point($id)
     {
 
-
+        $name = "";
         $user_name = session()->get("USER_NAME");
+        $user_phone = session()->get("USER_USERNAME");
         if ($user_name) {
             $point = Point::find($id);
 
-                $mydatetime = Carbon::now();
-                $mydate = $mydatetime->toDateString();
-                $point->date = $mydate;
-                $point->username = $user_name;
-                $point->save();
+            $mydatetime = Carbon::now();
+            $mydate = $mydatetime->toDateString();
+            $point->date = $mydate;
+            $point->username = $user_name;
+            $name = $point->name;
 
-
+            $point->userphone = $user_phone;
+            $point->save();
 
 
         }
 
-        return redirect("/")->with('message', "تمت اضافة العائلة - شكرا لك ");
+        return redirect("/")->with('message', "تمت توثيق عائلة ( " . $name . " ) - شكرا لك ");
 
 
     }
@@ -388,6 +391,20 @@ class ControlPanelController extends Controller
 
         $points = Point::all();
         return view("/CP/point/all_point", ["points" => $points]);
+    }
+
+    public function my_family()
+    {
+        $name = session()->get("USER_NAME");
+        if ($name) {
+            $points = Point::where('username', $name)->orderBy("id", "desc")->get();
+            return view("/CP/point/all_point", ["points" => $points]);
+        } else {
+
+
+            redirect("/");
+        }
+
     }
 
     public function edit_point($id)
