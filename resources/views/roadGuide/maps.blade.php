@@ -124,7 +124,7 @@
         const latAndLong ={!! json_encode($latAndLong) !!};
         const content = function (i) {
             return '<div style="width: 200px; overflow: hidden">' +
-                '<p style="font-size: 14px; margin-right: 15px;margin-top: 10px">' + latAndLong[i]['name'] + latAndLong[i]['t_number'] + '</p>' +
+                '<p style="font-size: 14px; margin-right: 15px;margin-top: 10px">' + latAndLong[i]['name'] + '</p>' +
                 '<p style="font-size: 9px;">' + latAndLong[i]['description'] + '</p>' +
                 '</div>'
         };

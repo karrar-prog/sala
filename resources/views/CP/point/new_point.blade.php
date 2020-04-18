@@ -40,6 +40,7 @@
                     <div class="form-group ">
                         <label for="input_t_number">رقم الهاتف</label>
                         <input class="form-control" id="input_t_number"  name="t_number" placeholder="">
+                        <label for="text">سوف يضهر لفرق الخير فقط</label>
                     </div>
 
 
