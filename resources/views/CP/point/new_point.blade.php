@@ -65,15 +65,17 @@
                     </div>
 
                     <div class="row">
-
+                        <div id="message1" class="alert alert-primary" role="alert">
+                            يجب الضغط على ( الكشف عن موقعي الحالي) واعطاء صلاحية الوصول الى الموقع الجغرافي  - اضغط حفظ عند ظهور زر الحفظ
                             <a id ="btn_get_location"class="btn btn-outline-info w-100" onclick="getLocation()"><i class="fa fa-street-view fa-2x">   </i>    الكشف عن موقعي الحالي   </a>
-                            <button name="location" style="visibility: hidden"  id="btn_location" type="submit" class="btn btn-primary w-100 mt-5"><i class="fa fa-save fa-2x">   </i>    حفظ    </button>
-
-                            <h6>يجب الضغط على ( الكشف عن موقعي الحالي) واعطاء صلاحية الوصول الى الموقع الجغرافي  - اضغط حفظ عند ظهور زر الحفظ</h6>
-
-
+                                 </div>
+                        <button name="location" style="visibility: hidden"  id="btn_location" type="submit" class="btn btn-primary w-100 mt-5"><i class="fa fa-save fa-2x">   </i>    حفظ    </button>
 
                     </div>
+
+
+
+            </div>
 
 
 
@@ -117,6 +119,7 @@
 
             document.getElementById('btn_get_location').style.visibility = 'hidden';
             document.getElementById('btn_location').style.visibility = 'visible';
+            document.getElementById('message1').textContent = 'تم جلب الموقع الجفرافي - يمكنك ضغط حفظ في حالة اكمال جميع الحقول';
         }
 
         function showError(error) {
