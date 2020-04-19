@@ -64,7 +64,7 @@
 
                     <div class="form-group ">
                         <label for="input_description">تفاصيل</label>
-                        <input type="text" class="form-control" id="input_description"  name="description" placeholder="اقرب نقطة دالة  +  اسم المختار اني وجد + هل انت من الساده أو والعوام ">
+                        <input type="text" class="form-control" id="input_description"  name="description" placeholder="اقرب نقطة دالة+اسم المختار+هل انت من الساده أو والعوام ">
                     </div>
 
                     <div class="row">
