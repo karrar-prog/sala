@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Enums\PointCategory;
 use App\Http\Requests\Request;
 use App\Models\Point;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
@@ -62,8 +63,8 @@ class PointController extends Controller
         $type3 = DB::table('point')->where("category", "<>", 4)->where('date', null)->count();
         $type2 = DB::table('point')->where("category", "<>", 4)->where('date', '=', $mydate)->count();
         $type1 = DB::table('point')->where("category", "<>", 4)->where('date', '<', $mydate)->count();
-
-        return view("/about_app", ["user_name" => $use_name, "phone" => $phone, "type1" => $type1, "type2" => $type2, "type3" => $type3]);
+        $users =DB::table('user')->distinct()->get(['name']);
+        return view("/about_app", ["user_name" => $use_name, "phone" => $phone, "type1" => $type1, "type2" => $type2, "type3" => $type3 , "users"=>$users]);
     }
 
     public function getPublicPoints()

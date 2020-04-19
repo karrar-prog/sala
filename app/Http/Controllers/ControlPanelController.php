@@ -383,6 +383,28 @@ class ControlPanelController extends Controller
 
 
     }
+public function arrived_now($id)
+{
+    $name = "";
+    $user_name = session()->get("USER_NAME");
+    $user_phone = session()->get("USER_USERNAME");
+    if ($user_name) {
+        $point = Point::find(trim($id));
+        $mydatetime = Carbon::now();
+        $mydate = $mydatetime->toDateString();
+        $point->date = $mydate;
+        $point->arrived_now = $user_name;
+        $name = $point->name;
+        $point->userphone = $user_phone;
+        $point->save();
+
+
+    }
+
+    return redirect("/")->with('message', "تم الوصول الى عائلة ( " . $name . " ) - شكرا لك ");
+
+}
+
     public function family_search(Request $request)
     {
 
@@ -412,9 +434,31 @@ class ControlPanelController extends Controller
 
     public function all_point()
     {
+        $username = session()->get("USER_NAME");
+        if($username)
+        {
+            $points = Point::where("username",$username)->get();
+            return view("/CP/point/all_point", ["points" => $points]);
+        }else
+        {
+            return view('user.contact');
 
-        $points = Point::all();
-        return view("/CP/point/all_point", ["points" => $points]);
+        }
+
+    }
+    public function single($id)
+    { $user_name = session()->get("USER_NAME");
+        $user_phone = session()->get("USER_USERNAME");
+        if ($user_name) {
+            $points = Point::where("id",$id)->get();
+            return view("/CP/point/all_point", ["points" => $points]);
+        }else
+        {
+            return view('user.contact');
+
+        }
+
+
     }
 
 

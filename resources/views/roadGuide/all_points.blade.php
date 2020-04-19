@@ -24,7 +24,7 @@
                         <div class="col">
 
                             <a style="width:170px" class="btn btn-shadow" onclick="getLocation()"><i
-                                        class="fa fa-search-location fa-2x"> </i> موقعي الحالي </a>
+                                        class="fa fa-search-location fa-2x"> </i> تحديد موقعي الحالي  </a>
                             <input style="width: 170px" type="text" class="form-control" id="input_latitude"
                                    name="latitude" required placeholder="خطوط العرض">
                             <input style="width: 170px" type="text" class="form-control" id="input_longitude"

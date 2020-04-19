@@ -34,13 +34,14 @@
 
                     <div class="form-group">
                         <label for="text">اسم العائلة</label>
-                        <input type="text" class="form-control" id="input_name" name="name" required placeholder="اكتب معلومة تميز العائلة ليس شرط الاسم الصريح">
+                        <input type="text" class="form-control" id="input_name" name="name" required placeholder="الاسم الثلاثي واللقب">
+                        <label for="text">*سوف يظهر فقط لفرق الخير واصحاب الحلمات </label>
                     </div>
 
                     <div class="form-group ">
                         <label for="input_t_number">رقم الهاتف</label>
-                        <input class="form-control" id="input_t_number"  name="t_number" placeholder="">
-                        <label for="text">سوف يضهر لفرق الخير فقط</label>
+                        <input class="form-control" id="input_t_number"  name="t_number" placeholder="هذا الحقل اختياري">
+                        <label for="text">*سوف يظهر فقط لفرق الخير واصحاب الحلمات </label>
                     </div>
 
 
@@ -48,10 +49,12 @@
                         <label for="input_category">المستوى المعيشي</label>
                         <select id="input_category" name="category" required class="form-control">
 
-                            <option selected value="1">مستحق</option>
+                            <option selected value="1">كاسب</option>
                             <option value="2">فقير</option>
                             <option value="3">دون مستوى الفقر</option>
                             <option value="4">لايوجد معيل</option>
+                            <option value="5">معوق</option>
+                            <option value="6">ارملة</option>
 
 
                         </select>
@@ -61,14 +64,14 @@
 
                     <div class="form-group ">
                         <label for="input_description">تفاصيل</label>
-                        <input type="text" class="form-control" id="input_description"  name="description" placeholder="اقرب نقطة دالة  و ملاحظات حول العائلة">
+                        <input type="text" class="form-control" id="input_description"  name="description" placeholder="اقرب نقطة دالة  +  اسم المختار اني وجد + هل انت من الساده أو والعوام ">
                     </div>
 
                     <div class="row">
                         <div id="message1" class="alert alert-primary" role="alert">
-                            اذا واجهت مشكلة في اكتشاف موقعك -افتح رابط سلة الخير في متصفح كروم (chrome) أو سفاري (safari)
+                            اذا واجهت مشكلة في تحديد موقعك -افتح رابط سلة الخير في متصفح كروم (chrome) أو سفاري (safari)
 
-                            <a id ="btn_get_location"class="btn btn-outline-info w-100" onclick="getLocation()"><i class="fa fa-street-view fa-2x">   </i>    الكشف عن موقعي الحالي   </a>
+                            <a id ="btn_get_location"class="btn btn-outline-info w-100" onclick="getLocation()"><i class="fa fa-street-view fa-2x">   </i>    تحديد موقعي الحالي   </a>
                                  </div>
                         <button name="location" style="visibility: hidden"  id="btn_location" type="submit" class="btn btn-primary w-100 mt-5"><i class="fa fa-save fa-2x">   </i>    حفظ    </button>
 
