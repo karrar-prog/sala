@@ -345,7 +345,7 @@ class ControlPanelController extends Controller
         $point->longitude = Input::get("longitude");
         $user_name = session()->get("USER_NAME");
         if ($user_name) {
-            $mydatetime = Carbon::now();
+            $mydatetime = Carbon::now()->addDay(-1);
             $mydate = $mydatetime->toDateString();
             $point->date = $mydate;
             $point->username = $user_name;
