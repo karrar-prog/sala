@@ -61,7 +61,7 @@
 
                     <div class="col-sm">
                         @if($point->date == null)
-                            لم يتم التوثيق بعد
+                            لم يتم الكشف بعد
                         @else
                             اخر وصول : {{$point->date}}
                            بواسطة ({{$point->userphone}})

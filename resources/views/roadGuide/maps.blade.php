@@ -125,9 +125,9 @@
         const content = function (i) {
             return '<div style="width: 200px; overflow: hidden">' +
                 '<p style="font-size: 14px; margin-right: 15px;margin-top: 10px">'  + 'العائلة رقم :' + latAndLong[i]['id'] + '</p>' +
-                '<p style="font-size: 14px;">' + 'تم التوثيق بواسطة : ' + latAndLong[i]['username'] + '</p>' +
+                '<p style="font-size: 14px;">' + 'تم الكشف بواسطة : ' + latAndLong[i]['username'] + '</p>' +
                 '<p style="font-size: 14px;">' + 'اخر وصول الية  : ' + latAndLong[i]['date'] + '</p>' +
-                '<p style="font-size: 14px;">' + 'بواسطة   : ' + latAndLong[i]['arrived'] + '</p>' +
+                '<p style="font-size: 14px;">' + 'تم الوصول بواسطة   : ' + latAndLong[i]['arrived'] + '</p>' +
                 '<p style="font-size: 14px;">' + '<a href="/single/ '+ latAndLong[i]['id'] +'">-  عرض التفاصيل  -</a> ' + '</p>' +
                 '</div>'
         };
