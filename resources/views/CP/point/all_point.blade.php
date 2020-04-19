@@ -89,7 +89,7 @@
                                           clip-rule="evenodd"/>
                                     <path d="M6.25 8.043l-.896-.897a.5.5 0 10-.708.708l.897.896.707-.707zm1 2.414l.896.897a.5.5 0 00.708 0l7-7a.5.5 0 00-.708-.708L8.5 10.293l-.543-.543-.707.707z"/>
                                 </svg>
-                                توثيق </a>
+                                كشف </a>
                         @endif
 
                         <a href="/arrived_now/{{$point->id}}" class="btn btn-success">

@@ -367,7 +367,7 @@ class ControlPanelController extends Controller
         if ($user_name) {
             $point = Point::find($id);
 
-            $mydatetime = Carbon::now();
+            $mydatetime = Carbon::now()->addDay(-1);;
             $mydate = $mydatetime->toDateString();
             $point->date = $mydate;
             $point->username = $user_name;
