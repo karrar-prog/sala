@@ -35,13 +35,13 @@
                     <div class="form-group">
                         <label for="text">اسم العائلة</label>
                         <input type="text" class="form-control" id="input_name" name="name" required placeholder="الاسم الثلاثي واللقب">
-                        <label for="text">*سوف يظهر فقط لفرق الخير واصحاب الحلمات </label>
+                        <label for="text">*سوف يظهر فقط لفرق الخير واصحاب الحملات </label>
                     </div>
 
                     <div class="form-group ">
                         <label for="input_t_number">رقم الهاتف</label>
                         <input class="form-control" id="input_t_number"  name="t_number" placeholder="هذا الحقل اختياري">
-                        <label for="text">*سوف يظهر فقط لفرق الخير واصحاب الحلمات </label>
+                        <label for="text">*سوف يظهر فقط لفرق الخير واصحاب الحملات </label>
                     </div>
 
 
