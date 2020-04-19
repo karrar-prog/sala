@@ -41,7 +41,9 @@
             </div>
 
         </div>
+        @if(isset($_COOKIE["USER_SESSION"]))
         <div class="container">
+
             <div class="row">
                 <form class="col-12 col-sm-6 " method="post" action="/family_search">
                     @csrf
@@ -60,14 +62,21 @@
 
             </div>
         </div>
-
+@endif
         <ul>
             @php $i=1; @endphp
             @foreach($allPoints as $point)
 
                 <div class="card text-center btn btn-shadow" style="margin-right: -40px">
                     <div class="card-header">
-                        <h5 class="card-title">{{$point->name}}</h5>
+                        @if(isset($_COOKIE["USER_SESSION"]))
+                            <h5 class="card-title">{{$point->id}}</h5>
+                            <h5 class="card-title">{{$point->name}}</h5>
+
+                        @else
+                            <h5 class="card-title">{{$point->id}}</h5>
+
+                        @endif
 
                         اخر وصول لهم كان في تأريخ
                         {{$point->date}}
@@ -75,7 +84,13 @@
                     </div>
                     تم الوصول بواسطة :{{$point->username}}
                     <div class="card-body ">
-                        <p class="card-text">  {{$point->description}}</p>
+                        @if(isset($_COOKIE["USER_SESSION"]))
+                            <p class="card-text">  {{$point->description}}</p>
+                        @else
+                        لمزيد من التفاصيل تواصل مع صاحب الحملة
+                        @endif
+
+
                         @if(isset($_COOKIE["USER_SESSION"]))
                             <a href="tel:{{$point->t_number}}">
                                 <svg class="bi bi-phone" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
@@ -127,7 +142,7 @@
                                     <path d="M6.25 8.043l-.896-.897a.5.5 0 10-.708.708l.897.896.707-.707zm1 2.414l.896.897a.5.5 0 00.708 0l7-7a.5.5 0 00-.708-.708L8.5 10.293l-.543-.543-.707.707z"/>
                                 </svg>
                                 تسليم سلة الان </a>
-                         
+
                         @endif
 
 
