@@ -37,11 +37,7 @@
                         <input type="text" class="form-control" id="input_name" name="name" required placeholder="الاسم الثلاثي واللقب">
                         <label for="text">*سوف يظهر فقط لفرق الخير واصحاب الحملات </label>
                     </div>
-                    <div class="form-group">
-                        <label for="text">اسم العائلة</label>
-                        <input type="text" class="form-control" id="input_name" name="name" required placeholder="الاسم الثلاثي واللقب">
-                        <label for="text">*سوف يظهر فقط لفرق الخير واصحاب الحملات </label>
-                    </div>
+
 
                     <div class="form-group ">
                         <label for="input_t_number">رقم الهاتف</label>
@@ -120,16 +116,16 @@
 
 
                     <div class="form-group ">
-                        <label style="visibility: hidden;" style="visibility: hidden;" for="input_t_number">معلومات اخرى</label>
-                        <input style="visibility: hidden;" class="form-control" id="input_f2"  name="f2" placeholder="هذا الحقل اختياري">
+                        <label  for="input_t_number">الاحتياجات الخاصه</label>
+                        <input  class="form-control" id="input_f2"  name="f2" placeholder="هذا الحقل اختياري">
                     </div>
                     <div class="form-group ">
-                        <label style="visibility: hidden;" style="visibility: hidden;" for="input_t_number">معلومات اخرى</label>
-                        <input style="visibility: hidden;" class="form-control" id="input_f3"  name="f3" placeholder="هذا الحقل اختياري">
+                        <label for="input_t_number">التفاصيل</label>
+                        <input  class="form-control" id="input_f3"  name="f3" placeholder="هذا الحقل اختياري">
                     </div>
-                    <div style="visibility: hidden;" class="form-group ">
-                        <label style="visibility: hidden;" for="input_t_number">معلومات اخرى</label>
-                        <input style="visibility: hidden;" class="form-control" id="input_f4"  name="f4" placeholder="هذا الحقل اختياري">
+                    <div  class="form-group ">
+                        <label  for="input_t_number">ملاحظات اخرى</label>
+                        <input  class="form-control" id="input_f4"  name="f4" placeholder="هذا الحقل اختياري">
                     </div>
                 </form>
 

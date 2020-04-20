@@ -126,9 +126,9 @@
 
                             @endif
 
-                            <h5 style="visibility: hidden" class="card-title">نوع العائلة :{{$point->f2}}</h5>
-                            <h5 style="visibility: hidden" class="card-title">نوع العائلة :{{$point->f3}}</h5>
-                            <h5 style="visibility: hidden" class="card-title">نوع العائلة :{{$point->f4}}</h5>
+                            <h5  class="card-title">الاحتياجات الخاصه :{{$point->f2}}</h5>
+                            <h5  class="card-title">التفاصيل :{{$point->f3}}</h5>
+                            <h5  class="card-title">ملاحظات اخرى :{{$point->f4}}</h5>
 
                             <a href="tel:{{$point->t_number}}">
                                 <svg class="bi bi-phone" width="1em" height="1em" viewBox="0 0 16 16"
