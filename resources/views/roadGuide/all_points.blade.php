@@ -62,6 +62,25 @@
                     </form>
 
                 </div>
+                <div class="row">
+                    <form class="col-12 col-sm-6 " method="post" action="/family_search">
+                        @csrf
+                        <div style="margin-top: 10px ; margin-bottom: 10px" class="col-sm-3">
+
+                            <button type="submit" class="btn btn-primary "> عوائل تصل لها مساعدة منذ </button>
+
+
+                        </div>
+                        <div class="col-sm-3 ">
+                            <input type="number" class="form-control" id="input_name" name="t_day" required
+                                   placeholder="عدد الايام">
+
+
+                        </div>
+
+                    </form>
+
+                </div>
             </div>
         @endif
         <ul>
@@ -78,17 +97,20 @@
                             <h5 class="card-title">{{$point->id}}</h5>
 
                         @endif
+                            <h5 class="card-title">
 
                         اخر وصول لهم كان في تأريخ
                         {{$point->date}}
-
+                            </h5>
                     </div>
+                    <h5 class="card-title">
                     تم الوصول بواسطة :{{$point->username}}
+                    </h5>
                     <div class="card-body ">
                         @if(isset($_COOKIE["USER_SESSION"]))
-                            <p class="card-text">  {{$point->description}}</p>
+                            <h5 class="card-title"> {{$point->description}} </h5>
                         @else
-                            لمزيد من التفاصيل تواصل مع صاحب الحملة
+                            <h5 class="card-title"> لمزيد من التفاصيل تواصل مع صاحب الحملة</h5>
                         @endif
 
 

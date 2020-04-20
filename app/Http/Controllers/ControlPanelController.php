@@ -364,6 +364,7 @@ class ControlPanelController extends Controller
 
 
     }
+
     public function valid_point($id)
     {
 
@@ -389,39 +390,51 @@ class ControlPanelController extends Controller
 
 
     }
-public function arrived_now($id)
-{
-    $name = "";
-    $user_name = session()->get("USER_NAME");
-    $user_phone = session()->get("USER_USERNAME");
-    if ($user_name) {
-        $point = Point::find(trim($id));
-        $mydatetime = Carbon::now();
-        $mydate = $mydatetime->toDateString();
-        $point->date = $mydate;
-        $point->arrived_now = $user_name;
-        $name = $point->name;
-        $point->userphone = $user_phone;
-        $point->save();
 
+    public function arrived_now($id)
+    {
+        $name = "";
+        $user_name = session()->get("USER_NAME");
+        $user_phone = session()->get("USER_USERNAME");
+        if ($user_name) {
+            $point = Point::find(trim($id));
+            $mydatetime = Carbon::now();
+            $mydate = $mydatetime->toDateString();
+            $point->date = $mydate;
+            $point->arrived_now = $user_name;
+            $name = $point->name;
+            $point->userphone = $user_phone;
+            $point->save();
+
+
+        }
+
+        return redirect("/")->with('message', "تم الوصول الى عائلة ( " . $name . " ) - شكرا لك ");
 
     }
 
-    return redirect("/")->with('message', "تم الوصول الى عائلة ( " . $name . " ) - شكرا لك ");
-
-}
-
     public function family_search(Request $request)
     {
+        $days = $request->get("t_day");
+
+        if ($days) {
+           $new_date = Carbon::now()->addDay(- value($days));
+            $true_date  =Carbon::parse($new_date)->format('yy-m-d');
+
+            $allPoints = Point::whereDate('date', '<',$true_date )->orWhere('date',null)->get();
 
 
-        $t_search = $request->get("t_search");
+        }else
+        {
+            $t_search = $request->get("t_search");
 
-        $allPoints = Point::where('name','like','%' .$t_search . '%')->orWhere('t_number','like','%' .$t_search . '%')->orWhere('description','like','%' .$t_search . '%')->get();
+            $allPoints = Point::where('name', 'like', '%' . $t_search . '%')->orWhere('t_number', 'like', '%' . $t_search . '%')->orWhere('description', 'like', '%' . $t_search . '%')->get();
+
+        }
+
 
         $mydatetime = Carbon::now();
         $mydate = $mydatetime->toDateString();
-
 
 
         $use_name = "";
@@ -441,33 +454,30 @@ public function arrived_now($id)
     public function all_point()
     {
         $username = session()->get("USER_NAME");
-        if($username)
-        {
-            $points = Point::where("username",$username)->get();
+        if ($username) {
+            $points = Point::where("username", $username)->get();
             return view("/CP/point/all_point", ["points" => $points]);
-        }else
-        {
+        } else {
             return view('user.contact');
 
         }
 
     }
+
     public function single($id)
     {
         $user_name = session()->get("USER_NAME");
         $user_phone = session()->get("USER_USERNAME");
         if ($user_name) {
-            $points = Point::where("id",$id)->get();
-            return view("/CP/point/all_point", ["points" => $points,"user_name"=>$user_name]);
-        }else
-        {
+            $points = Point::where("id", $id)->get();
+            return view("/CP/point/all_point", ["points" => $points, "user_name" => $user_name]);
+        } else {
             return view('user.contact');
 
         }
 
 
     }
-
 
 
     public function my_family()
@@ -517,12 +527,10 @@ public function arrived_now($id)
     {
 
 
-        if (session()->get("USER_NAME"))
-        {
+        if (session()->get("USER_NAME")) {
             return view("/CP/point/ensure_delete", ["id" => $id]);
 
-        }else
-        {
+        } else {
             return view("/");
 
         }
@@ -531,8 +539,7 @@ public function arrived_now($id)
 
     public function delete_point($id)
     {
-        if (session()->get("USER_NAME"))
-        {
+        if (session()->get("USER_NAME")) {
             $point = Point::find($id);
 
             if ($point->delete()) {
@@ -544,8 +551,7 @@ public function arrived_now($id)
 
             return redirect("/my_family")->with('message', $mesaage);
 
-        }else
-        {
+        } else {
             $mesaage = "ليس لديك الصلاحية";
             return redirect("/my_family")->with('message', $mesaage);
         }
