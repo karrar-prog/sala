@@ -114,9 +114,9 @@
 
                             @endif
 
-                            <h5 style="visibility: hidden" class="card-title">نوع العائلة :{{$point->f2}}</h5>
-                            <h5 style="visibility: hidden" class="card-title">نوع العائلة :{{$point->f3}}</h5>
-                            <h5 style="visibility: hidden" class="card-title">نوع العائلة :{{$point->f4}}</h5>
+                            <h5  class="card-title">الاحتياجات الخاصه :{{$point->f2}}</h5>
+                            <h5  class="card-title">تفاصيل اخرى :{{$point->f3}}</h5>
+                            <h5  class="card-title">ملاحظات اخرى :{{$point->f4}}</h5>
 
                        
                         @endif

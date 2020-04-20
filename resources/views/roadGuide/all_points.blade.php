@@ -127,7 +127,7 @@
                             @endif
 
                             <h5  class="card-title">الاحتياجات الخاصه :{{$point->f2}}</h5>
-                            <h5  class="card-title">التفاصيل :{{$point->f3}}</h5>
+                            <h5  class="card-title">تفاصيل اخرى :{{$point->f3}}</h5>
                             <h5  class="card-title">ملاحظات اخرى :{{$point->f4}}</h5>
 
                             <a href="tel:{{$point->t_number}}">

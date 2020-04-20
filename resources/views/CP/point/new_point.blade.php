@@ -83,6 +83,18 @@
                         <input type="text" class="form-control" id="input_description"  name="description" placeholder="اقرب نقطة دالة ">
                     </div>
 
+                    <div class="form-group ">
+                        <label  for="input_t_number">الاحتياجات الخاصه</label>
+                        <input  class="form-control" id="input_f2"  name="f2" placeholder="هذا الحقل اختياري">
+                    </div>
+                    <div class="form-group ">
+                        <label for="input_t_number">تفاصيل اخرى</label>
+                        <input  class="form-control" id="input_f3"  name="f3" placeholder="هذا الحقل اختياري">
+                    </div>
+                    <div  class="form-group ">
+                        <label  for="input_t_number">ملاحظات اخرى</label>
+                        <input  class="form-control" id="input_f4"  name="f4" placeholder="هذا الحقل اختياري">
+                    </div>
                     <div class="row">
                         <div id="message1" class="alert alert-primary" role="alert">
                             اذا واجهت مشكلة في تحديد موقعك -افتح رابط سلة الخير في متصفح كروم (chrome) أو سفاري (safari)
@@ -115,18 +127,6 @@
 
 
 
-                    <div class="form-group ">
-                        <label  for="input_t_number">الاحتياجات الخاصه</label>
-                        <input  class="form-control" id="input_f2"  name="f2" placeholder="هذا الحقل اختياري">
-                    </div>
-                    <div class="form-group ">
-                        <label for="input_t_number">التفاصيل</label>
-                        <input  class="form-control" id="input_f3"  name="f3" placeholder="هذا الحقل اختياري">
-                    </div>
-                    <div  class="form-group ">
-                        <label  for="input_t_number">ملاحظات اخرى</label>
-                        <input  class="form-control" id="input_f4"  name="f4" placeholder="هذا الحقل اختياري">
-                    </div>
                 </form>
 
 
