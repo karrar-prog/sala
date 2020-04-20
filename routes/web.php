@@ -55,4 +55,7 @@ Route::get("/jsdlfdslfflsdfflrjjdkrkjd24324234admin_register", "UserController@r
 Route::get("/my_family", "ControlPanelController@my_family");
 Route::get("/single/{id}", "ControlPanelController@single");
 Route::get("/arrived_now/{id}", "ControlPanelController@arrived_now");
+Route::get("/my_team", "UserController@my_team");
+
+Route::post("/change_name", "UserController@change_name");
 

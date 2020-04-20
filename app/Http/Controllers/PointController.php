@@ -32,9 +32,9 @@ class PointController extends Controller
                 ->get();
 
         }
-        $use_name = "";
+        $user_name = "";
         try {
-            $use_name = session()->get("USER_NAME");
+            $user_name = session()->get("USER_NAME");
 
         } catch (Exception $s) {
 
@@ -43,7 +43,7 @@ class PointController extends Controller
         $type2 = DB::table('point')->where("category", "<>", 4)->where('date', '=', $mydate)->count();
         $type1 = DB::table('point')->where("category", "<>", 4)->where('date', '<', $mydate)->count();
         return view('roadGuide.all_points')->with([
-            "allPoints" => $allPoints, "user_name" => $use_name, "type1" => $type1, "type2" => $type2, "type3" => $type3]);
+            "allPoints" => $allPoints, "user_name" => $user_name, "type1" => $type1, "type2" => $type2, "type3" => $type3]);
     }
 
     public function main()

@@ -68,6 +68,20 @@ class UserController extends Controller
 
         return redirect("/")->withCookie(cookie('USER_SESSION' , $user->session , 1000000000));
     }
+    public function change_name(Request $request) {
+
+        $id = Input::get("id");
+
+        $user = User::find("$id");
+
+        $user->his_name = Input::get("his_name");
+
+        $user->save();
+
+        return back();
+
+
+       }
 
     public function login() {
         return view("user.login");
@@ -127,5 +141,30 @@ class UserController extends Controller
         $cookie = Cookie::forget("USER_SESSION");
 
         return redirect("/")->withCookie($cookie);
+    }
+
+    public function my_team()
+    {
+        $use_name = "";
+        $phone = "";
+        try {
+            $user_name = session()->get("USER_NAME");
+if($user_name)
+{
+    $users =User::where("name",$user_name)->get();
+    $user_name = session()->get("USER_USERNAME");
+    $name = session()->get("USER_NAME");
+
+    return view("user.my_team", ["users" => $users,"username"=>$user_name,"name"=>$name]);
+
+}else{
+    redirect();
+}
+
+        } catch (Exception $s) {
+redirect();
+
+        }
+
     }
 }

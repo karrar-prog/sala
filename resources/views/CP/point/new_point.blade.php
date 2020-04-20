@@ -37,11 +37,31 @@
                         <input type="text" class="form-control" id="input_name" name="name" required placeholder="الاسم الثلاثي واللقب">
                         <label for="text">*سوف يظهر فقط لفرق الخير واصحاب الحملات </label>
                     </div>
+                    <div class="form-group">
+                        <label for="text">اسم العائلة</label>
+                        <input type="text" class="form-control" id="input_name" name="name" required placeholder="الاسم الثلاثي واللقب">
+                        <label for="text">*سوف يظهر فقط لفرق الخير واصحاب الحملات </label>
+                    </div>
 
                     <div class="form-group ">
                         <label for="input_t_number">رقم الهاتف</label>
                         <input class="form-control" id="input_t_number"  name="t_number" placeholder="هذا الحقل اختياري">
-                        <label for="text">*سوف يظهر فقط لفرق الخير واصحاب الحملات </label>
+                     </div>
+
+                    <div class="form-group ">
+                        <label for="input_t_number">اسم المختار</label>
+                        <input class="form-control" id="input_admin_name"  name="admin_name" placeholder="هذا الحقل اختياري">
+                    </div>
+                    <div class="form-group ">
+                        <label for="input_t_number">رقم البطاقة التومينية</label>
+                        <input class="form-control" id="input_f1"  name="f1" placeholder="هذا الحقل اختياري">
+                    </div>
+
+
+                    <div class="form-group ">
+                        <div class="form-group">
+                            @include("items.types")
+                        </div>
                     </div>
 
 
@@ -64,7 +84,7 @@
 
                     <div class="form-group ">
                         <label for="input_description">تفاصيل</label>
-                        <input type="text" class="form-control" id="input_description"  name="description" placeholder="اقرب نقطة دالة+اسم المختار+هل انت من الساده أو والعوام ">
+                        <input type="text" class="form-control" id="input_description"  name="description" placeholder="اقرب نقطة دالة ">
                     </div>
 
                     <div class="row">
@@ -96,7 +116,26 @@
 
                         </div>
                     </div>
+
+
+
+                    <div class="form-group ">
+                        <label style="visibility: hidden;" style="visibility: hidden;" for="input_t_number">معلومات اخرى</label>
+                        <input style="visibility: hidden;" class="form-control" id="input_f2"  name="f2" placeholder="هذا الحقل اختياري">
+                    </div>
+                    <div class="form-group ">
+                        <label style="visibility: hidden;" style="visibility: hidden;" for="input_t_number">معلومات اخرى</label>
+                        <input style="visibility: hidden;" class="form-control" id="input_f3"  name="f3" placeholder="هذا الحقل اختياري">
+                    </div>
+                    <div style="visibility: hidden;" class="form-group ">
+                        <label style="visibility: hidden;" for="input_t_number">معلومات اخرى</label>
+                        <input style="visibility: hidden;" class="form-control" id="input_f4"  name="f4" placeholder="هذا الحقل اختياري">
+                    </div>
                 </form>
+
+
+
+
 
             </div>
         </div>

@@ -24,7 +24,7 @@
                         <div class="col">
 
                             <a style="width:170px" class="btn btn-shadow" onclick="getLocation()"><i
-                                        class="fa fa-search-location fa-2x"> </i> تحديد موقعي الحالي  </a>
+                                        class="fa fa-search-location fa-2x"> </i> تحديد موقعي الحالي </a>
                             <input style="width: 170px" type="text" class="form-control" id="input_latitude"
                                    name="latitude" required placeholder="خطوط العرض">
                             <input style="width: 170px" type="text" class="form-control" id="input_longitude"
@@ -42,27 +42,28 @@
 
         </div>
         @if(isset($_COOKIE["USER_SESSION"]))
-        <div class="container">
+            <div class="container">
 
-            <div class="row">
-                <form class="col-12 col-sm-6 " method="post" action="/family_search">
-                    @csrf
-                    <div class="col-sm-3 ">
-                        <input  type="text" class="form-control" id="input_name" name="t_search" required placeholder="ابحث عن  عائلة بواسطة الاسم او رقم هاتف او التفاصيل">
-
-
-                    </div>
-                    <div style="margin-top: 10px ; margin-bottom: 10px" class="col-sm-3">
-
-                        <button  type="submit" class="btn btn-primary ">    بحث    </button>
+                <div class="row">
+                    <form class="col-12 col-sm-6 " method="post" action="/family_search">
+                        @csrf
+                        <div class="col-sm-3 ">
+                            <input type="text" class="form-control" id="input_name" name="t_search" required
+                                   placeholder="ابحث عن  عائلة بواسطة الاسم او رقم هاتف او التفاصيل">
 
 
-                    </div>
-                </form>
+                        </div>
+                        <div style="margin-top: 10px ; margin-bottom: 10px" class="col-sm-3">
 
+                            <button type="submit" class="btn btn-primary "> بحث</button>
+
+
+                        </div>
+                    </form>
+
+                </div>
             </div>
-        </div>
-@endif
+        @endif
         <ul>
             @php $i=1; @endphp
             @foreach($allPoints as $point)
@@ -87,13 +88,29 @@
                         @if(isset($_COOKIE["USER_SESSION"]))
                             <p class="card-text">  {{$point->description}}</p>
                         @else
-                        لمزيد من التفاصيل تواصل مع صاحب الحملة
+                            لمزيد من التفاصيل تواصل مع صاحب الحملة
                         @endif
 
 
                         @if(isset($_COOKIE["USER_SESSION"]))
+                            <h5 class="card-title">اسم المختار :{{$point->admin_name}}</h5>
+                            <h5 class="card-title">رقم البطاقة التموينية :{{$point->f1}}</h5>
+
+                            @if($point->type==1)
+                                <h5 class="card-title">نوع العائلة : عامي</h5>
+
+                            @else
+                                <h5 class="card-title">نوع العائلة : سادة</h5>
+
+                            @endif
+
+                            <h5 style="visibility: hidden" class="card-title">نوع العائلة :{{$point->f2}}</h5>
+                            <h5 style="visibility: hidden" class="card-title">نوع العائلة :{{$point->f3}}</h5>
+                            <h5 style="visibility: hidden" class="card-title">نوع العائلة :{{$point->f4}}</h5>
+
                             <a href="tel:{{$point->t_number}}">
-                                <svg class="bi bi-phone" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+                                <svg class="bi bi-phone" width="1em" height="1em" viewBox="0 0 16 16"
+                                     fill="currentColor"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd"
                                           d="M11 1H5a1 1 0 00-1 1v12a1 1 0 001 1h6a1 1 0 001-1V2a1 1 0 00-1-1zM5 0a2 2 0 00-2 2v12a2 2 0 002 2h6a2 2 0 002-2V2a2 2 0 00-2-2H5z"
@@ -102,7 +119,7 @@
                                 </svg> {{$point->t_number}} اتصال </a>
                             <a></a>
 
-                            @endif
+                        @endif
 
 
                         <div class="card-body">

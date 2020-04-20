@@ -341,6 +341,12 @@ class ControlPanelController extends Controller
         $point->city = Input::get("city");
         $point->t_number = Input::get("t_number");
         $point->category = Input::get("category");
+        $point->f1 = Input::get("f1");
+        $point->f2 = Input::get("f2");
+        $point->f3 = Input::get("f3");
+        $point->f4 = Input::get("f4");
+        $point->admin_name = Input::get("admin_name");
+        $point->type = Input::get("type");
         $point->latitude = Input::get("latitude");
         $point->longitude = Input::get("longitude");
         $user_name = session()->get("USER_NAME");
@@ -447,11 +453,12 @@ public function arrived_now($id)
 
     }
     public function single($id)
-    { $user_name = session()->get("USER_NAME");
+    {
+        $user_name = session()->get("USER_NAME");
         $user_phone = session()->get("USER_USERNAME");
         if ($user_name) {
             $points = Point::where("id",$id)->get();
-            return view("/CP/point/all_point", ["points" => $points]);
+            return view("/CP/point/all_point", ["points" => $points,"user_name"=>$user_name]);
         }else
         {
             return view('user.contact');
