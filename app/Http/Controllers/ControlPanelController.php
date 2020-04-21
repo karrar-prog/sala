@@ -484,8 +484,16 @@ class ControlPanelController extends Controller
     {
         $name = session()->get("USER_NAME");
         if ($name) {
+
             $points = Point::where('username', $name)->orderBy("date", "asc")->get();
-            return view("/CP/point/all_point", ["points" => $points]);
+            $user_name = "";
+            try {
+                $user_name = session()->get("USER_NAME");
+
+            } catch (Exception $s) {
+
+            }
+            return view("/CP/point/all_point", ["points" => $points , "user_name"=>$user_name]);
         } else {
 
 
