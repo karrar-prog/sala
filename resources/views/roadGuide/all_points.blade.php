@@ -49,7 +49,7 @@
                         @csrf
                         <div class="col-sm-3 ">
                             <input type="text" class="form-control" id="input_name" name="t_search" required
-                                   placeholder="ابحث عن  عائلة بواسطة الاسم او رقم هاتف او التفاصيل">
+                                   placeholder="ابحث عن  عائلة بواسطة رقم العائلة او الاسم او رقم هاتف او التفاصيل">
 
 
                         </div>

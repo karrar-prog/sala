@@ -452,7 +452,7 @@ class ControlPanelController extends Controller
         } else {
             $t_search = $request->get("t_search");
 
-            $allPoints = Point::where('name', 'like', '%' . $t_search . '%')->orWhere('t_number', 'like', '%' . $t_search . '%')->orWhere('description', 'like', '%' . $t_search . '%')->get();
+            $allPoints = Point::where('name', 'like', '%' . $t_search . '%')->orWhere('t_number', 'like',  $t_search )->orWhere('description', 'like', '%' . $t_search . '%')->orWhere('id', $t_search)->get();
 
         }
 
@@ -558,7 +558,6 @@ class ControlPanelController extends Controller
 
     public function ensure_delete($id)
     {
-
 
         if (session()->get("USER_NAME")) {
             return view("/CP/point/ensure_delete", ["id" => $id]);

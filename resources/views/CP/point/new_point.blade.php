@@ -36,6 +36,40 @@
                         <label for="text">*سوف يظهر فقط لفرق الخير واصحاب الحملات </label>
 
                     </div>
+                    @if(isset($_COOKIE["USER_SESSION"]))
+                        <div class="form-group alert alert-success ">
+                            <label for="input_t_number" > البطاقة التموينية</label>
+                            <input type="number" class="form-control" id="input_f1"  name="f1" >
+                        </div>
+                        @else
+                        @if(session('message'))
+                            <div class="col">
+                            </div>
+                            <div class="col">
+                                <div   class="alert alert-danger w-200 animated shake" role="alert">
+                                    {{session('message')}}
+                                    <div class="form-group  ">
+                                        @if(isset($_COOKIE["USER_SESSION"]))
+                                            <a href="/single/ {{session('id')}}">مشاهدة تفاصيل هذه العائلة</a>
+
+                                        @endif
+
+                                        <input  oninput="setCustomValidity('')" type="number" oninvalid="this.setCustomValidity('يجب ادخال رقم البطاقة')" class="form-control" id="input_f1" required name="f1" placeholder="ادخل رقم بطاقة التموينية">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col">
+                            </div>
+
+                        @else
+                            <div class="form-group alert alert-success ">
+                                <label for="input_t_number" >رقم البطاقة التموينية</label>
+                                <input  oninput="setCustomValidity('')" type="number" oninvalid="this.setCustomValidity('يجب ادخال رقم البطاقة')" class="form-control" id="input_f1"  name="f1" placeholder="اجباري">
+                            </div>
+                        @endif
+
+                    @endif
                     @if(session('message'))
                         <div class="col">
                         </div>
@@ -58,8 +92,8 @@
 
                     @else
                         <div class="form-group alert alert-success ">
-                            <label for="input_t_number" >رقم البطاقة التومينية</label>
-                            <input  oninput="setCustomValidity('')" type="number" oninvalid="this.setCustomValidity('يجب ادخال رقم البطاقة')" class="form-control" id="input_f1" required name="f1" placeholder="اجباري">
+                            <label for="input_t_number" >رقم البطاقة التموينية</label>
+                            <input  oninput="setCustomValidity('')" type="number" oninvalid="this.setCustomValidity('يجب ادخال رقم البطاقة')" class="form-control" id="input_f1"  name="f1" placeholder="اجباري">
                         </div>
                     @endif
 
