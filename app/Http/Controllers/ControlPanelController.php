@@ -517,7 +517,8 @@ class ControlPanelController extends Controller
             } catch (Exception $s) {
 
             }
-            return view("/CP/point/all_point", ["points" => $points, "user_name" => $user_name]);
+//            return view("/CP/point/all_point", ["points" => $points, "user_name" => $user_name]);
+            return view("/roadGuide/all_points", ["allPoints" => $points, "user_name" => $user_name]);
         } else {
 
 
