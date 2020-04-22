@@ -7,18 +7,7 @@
 
 
         <div class="row">
-            @if(session('message'))
-                <div class="col">
-                </div>
-                <div class="col">
-                    <div class="alert alert-success w-100" role="alert">
-                        {{session('message')}}
-                    </div>
 
-                </div>
-                <div class="col">
-                </div>
-            @endif
 
 
             <div class="col-12 d-flex justify-content-center">
@@ -32,25 +21,57 @@
                     </div>
 
 
-                    <div class="form-group">
-                        <label for="text">اسم العائلة</label>
-                        <input type="text" class="form-control" id="input_name" name="name" required placeholder="الاسم الثلاثي واللقب">
+                    <div class="form-group alert alert-success ">
+
+                        <input  oninvalid="this.setCustomValidity('يجب ادخال الاسم الثلاثي واللقب')"
+                                oninput="setCustomValidity('')" type="text" class="form-control" id="input_name" name="name" required placeholder="الاسم الثلاثي واللقب">
                         <label for="text">*سوف يظهر فقط لفرق الخير واصحاب الحملات </label>
+
                     </div>
 
 
-                    <div class="form-group ">
-                        <label for="input_t_number">رقم الهاتف</label>
-                        <input class="form-control" id="input_t_number"  name="t_number" placeholder="هذا الحقل اختياري">
-                     </div>
+                    <div class="form-group alert alert-success">
+
+                        <input type="number" class="form-control" id="input_t_number"  name="t_number" placeholder="رقم الهاتف">
+                        <label for="text">*سوف يظهر فقط لفرق الخير واصحاب الحملات </label>
+
+                    </div>
+                    @if(session('message'))
+                        <div class="col">
+                        </div>
+                        <div class="col">
+                            <div   class="alert alert-danger w-200 animated shake" role="alert">
+                                {{session('message')}}
+                                 <div class="form-group  ">
+                                     @if(isset($_COOKIE["USER_SESSION"]))
+                                         <a href="/single/ {{session('id')}}">مشاهدة تفاصيل هذه العائلة</a>
+
+                                     @endif
+
+                                    <input  oninput="setCustomValidity('')" type="number" oninvalid="this.setCustomValidity('يجب ادخال رقم البطاقة')" class="form-control" id="input_f1" required name="f1" placeholder="ادخل رقم بطاقة التموينية">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col">
+                        </div>
+
+                    @else
+                        <div class="form-group alert alert-success ">
+                            <label for="input_t_number" >رقم البطاقة التومينية</label>
+                            <input  oninput="setCustomValidity('')" type="number" oninvalid="this.setCustomValidity('يجب ادخال رقم البطاقة')" class="form-control" id="input_f1" required name="f1" placeholder="اجباري">
+                        </div>
+                    @endif
+
 
                     <div class="form-group ">
-                        <label for="input_t_number">اسم المختار</label>
-                        <input class="form-control" id="input_admin_name"  name="admin_name" placeholder="هذا الحقل اختياري">
+                        <label for="input_t_number"></label>
+                        <input class="form-control" id="input_admin_name"  name="admin_name" placeholder="اسم المختار">
                     </div>
+
                     <div class="form-group ">
-                        <label for="input_t_number">رقم البطاقة التومينية</label>
-                        <input class="form-control" id="input_f1"  name="f1" placeholder="هذا الحقل اختياري">
+
+                        <input type="text" class="form-control" id="input_description"  name="description" placeholder="اسم الحي واقرب نقطة دالة ">
                     </div>
 
 
@@ -61,48 +82,62 @@
                     </div>
 
 
-                    <div class="form-group">
-                        <label for="input_category">المستوى المعيشي</label>
-                        <select id="input_category" name="category" required class="form-control">
-
-                            <option selected value="1">كاسب</option>
-                            <option value="2">فقير</option>
-                            <option value="3">دون مستوى الفقر</option>
-                            <option value="4">لايوجد معيل</option>
-                            <option value="5">معوق</option>
-                            <option value="6">ارملة</option>
-
-
-                        </select>
-                    </div>
-
 
 
                     <div class="form-group ">
-                        <label for="input_description">تفاصيل</label>
-                        <input type="text" class="form-control" id="input_description"  name="description" placeholder="اقرب نقطة دالة ">
+                        <div class="form-group">
+                            @include("items.father")
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <div class="form-group">
+                            @include("items.category")
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <div class="form-group">
+                            @include("items.childe")
+                        </div>
                     </div>
 
                     <div class="form-group ">
-                        <label  for="input_t_number">الاحتياجات الخاصه</label>
-                        <input  class="form-control" id="input_f2"  name="f2" placeholder="هذا الحقل اختياري">
+                        <div class="form-group">
+                            @include("items.single")
+                        </div>
                     </div>
                     <div class="form-group ">
-                        <label for="input_t_number">تفاصيل اخرى</label>
-                        <input  class="form-control" id="input_f3"  name="f3" placeholder="هذا الحقل اختياري">
+                        <div class="form-group">
+                            @include("items.childe_without")
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <div class="form-group">
+                            @include("items.desise")
+                        </div>
                     </div>
                     <div  class="form-group ">
-                        <label  for="input_t_number">ملاحظات اخرى</label>
-                        <input  class="form-control" id="input_f4"  name="f4" placeholder="هذا الحقل اختياري">
+                        <input  class="form-control" id="input_f4"  name="f4" placeholder="تفاصيل العلاج ان وجد">
                     </div>
+                    <div class="form-group ">
+                        <input  class="form-control" id="input_f2"  name="f2" placeholder="احتياج خاص">
+                    </div>
+                    <div class="form-group ">
+
+                        <input  class="form-control" id="input_f3"  name="f3" placeholder="تفاصيل اخرى">
+                    </div>
+
+
                     <div class="row">
                         <div id="message1" class="alert alert-primary" role="alert">
                             اذا واجهت مشكلة في تحديد موقعك -افتح رابط سلة الخير في متصفح كروم (chrome) أو سفاري (safari)
 
                             <a id ="btn_get_location"class="btn btn-outline-info w-100" onclick="getLocation()"><i class="fa fa-street-view fa-2x">   </i>    تحديد موقعي الحالي   </a>
                                  </div>
-                        <button name="location" style="visibility: hidden"  id="btn_location" type="submit" class="btn btn-primary w-100 mt-5"><i class="fa fa-save fa-2x">   </i>    حفظ    </button>
 
+                            <button name="location" style="visibility: hidden"  id="btn_location" type="submit" class="btn btn-primary w-100 mt-5"><i class="fa fa-save fa-2x">   </i>    حفظ     </button>
+                        <div style="visibility: hidden" id="message2" class="alert alert-success " role="alert">
+                            في حالة الضغط على زر الحفظ انت تتعهد امام الله بصحة المعلومات المدخلة
+                        </div>
                     </div>
 
 
@@ -160,6 +195,7 @@
 
             document.getElementById('btn_get_location').style.visibility = 'hidden';
             document.getElementById('btn_location').style.visibility = 'visible';
+            document.getElementById('message2').style.visibility = 'visible';
             document.getElementById('message1').textContent = 'تم جلب الموقع الجفرافي - يمكنك ضغط حفظ في حالة اكمال جميع الحقول';
         }
 

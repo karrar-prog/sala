@@ -34,15 +34,10 @@
                                 <label for="input_t_number">رقم الهاتف</label>
                                 <input  class="form-control" id="input_t_number" name="t_number" value="{{$point->t_number}}" >
                             </div>
-                            <div class="form-group">
-                                <label for="input_category">المستوى المعيشي</label>
-                                <select id="input_category" name="category" required class="form-control">
-
-                                    <option selected value="1">مستحق</option>
-                                    <option value="2">فقير</option>
-                                    <option value="3">دون مستوى الفقر</option>
-                                    <option value="4">لايوجد معيل</option>
-                                </select>
+                            <div class="form-group ">
+                                <div class="form-group">
+                                    @include("items.category")
+                                </div>
                             </div>
                             <div class="form-group ">
                                 <label for="input_description">تفاصيل</label>

@@ -345,22 +345,47 @@ class ControlPanelController extends Controller
         $point->f2 = Input::get("f2");
         $point->f3 = Input::get("f3");
         $point->f4 = Input::get("f4");
+
+        $point->treat = Input::get("treat");
+        $point->childe = Input::get("childe");
+        $point->desise = Input::get("desise");
+        $point->single = Input::get("single");
+        $point->childe_without = Input::get("childe_without");
+        $point->father = Input::get("father");
         $point->admin_name = Input::get("admin_name");
         $point->type = Input::get("type");
         $point->latitude = Input::get("latitude");
         $point->longitude = Input::get("longitude");
         $user_name = session()->get("USER_NAME");
+
+        $pointExisit = Point::where("f1", $point->f1)->first();
+        if ($pointExisit) {
+            $message = "تمت تسجيل هذه العائلة من قبل  بواسطة -  " . $pointExisit->username . "     رقم العائلة =    " . $pointExisit->id;
+            return redirect("/new_family")->with('message', $message)->with('id', $pointExisit->id);
+
+        }
+
         if ($user_name) {
-            $mydatetime = Carbon::now()->addDay(-1);
+//            $mydatetime = Carbon::now()->addDay(-1);
+            $mydatetime = Carbon::now();
             $mydate = $mydatetime->toDateString();
             $point->date = $mydate;
             $point->username = $user_name;
+            $message = "تمت اضافة العائلة - شكرا لك " . $user_name;
 
+
+        }else
+        {
+            $message = " شكرا لك " .   Input::get("name") . " تم استلام معلومات عائلتك - سوف تتواصل معكم فرق الخير عن قريب لتقديم المساعدة " ;
 
         }
-        $point->save();
+        if ($point->save()) {
+            return redirect("/")->with('message',$message);
 
-        return redirect("/")->with('message', "تمت اضافة العائلة - شكرا لك ");
+        } else {
+            return redirect("/")->with('message', "لم تتم العملية ");
+
+        }
 
 
     }
@@ -418,14 +443,13 @@ class ControlPanelController extends Controller
         $days = $request->get("t_day");
 
         if ($days) {
-           $new_date = Carbon::now()->addDay(- value($days));
-            $true_date  =Carbon::parse($new_date)->format('yy-m-d');
+            $new_date = Carbon::now()->addDay(-value($days));
+            $true_date = Carbon::parse($new_date)->format('yy-m-d');
 
-            $allPoints = Point::whereDate('date', '<',$true_date )->orWhere('date',null)->get();
+            $allPoints = Point::whereDate('date', '<', $true_date)->orWhere('date', null)->get();
 
 
-        }else
-        {
+        } else {
             $t_search = $request->get("t_search");
 
             $allPoints = Point::where('name', 'like', '%' . $t_search . '%')->orWhere('t_number', 'like', '%' . $t_search . '%')->orWhere('description', 'like', '%' . $t_search . '%')->get();
@@ -470,10 +494,10 @@ class ControlPanelController extends Controller
         $user_phone = session()->get("USER_USERNAME");
         if ($user_name) {
             $points = Point::where("id", $id)->get();
-            return view("/CP/point/all_point", ["points" => $points, "user_name" => $user_name]);
+//            return view("/CP/point/all_point", ["points" => $points, "user_name" => $user_name]);
+            return view("/roadGuide/all_points", ["allPoints" => $points, "user_name" => $user_name]);
         } else {
-            return view('user.contact');
-
+            redirect("/login");
         }
 
 
@@ -493,7 +517,7 @@ class ControlPanelController extends Controller
             } catch (Exception $s) {
 
             }
-            return view("/CP/point/all_point", ["points" => $points , "user_name"=>$user_name]);
+            return view("/CP/point/all_point", ["points" => $points, "user_name" => $user_name]);
         } else {
 
 

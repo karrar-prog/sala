@@ -1,4 +1,4 @@
-<label for="input_city">هل انت من السادة او العوام</label>
+<label for="input_type">هل انت من السادة او العوام</label>
 
 <select style="width: 170px" id="input_type" name="type" class="form-control">
     {{--<option selected value="0">العوام</option>--}}

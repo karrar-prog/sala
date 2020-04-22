@@ -7,12 +7,7 @@
 
 @section('content')
 
-    @if(session('message'))
 
-        <div class="alert alert-primary" role="alert">
-            {{session('message')}}
-        </div>
-    @endif
     @if(isset($_COOKIE["USER_SESSION"]))
         <div class="card text-center">
             <div class="card-header">
@@ -76,7 +71,7 @@
                 </div>
 
                 @else
-                    <div id="my_id" class="alert alert-success animated shake infinite" role="alert">
+                    <div id="my_id" class="alert alert-success animated shake " role="alert">
                         مشروع سلة الخير هو مشروع خيري وغير ربحي ، يهدف لمساعدة العوائل المتضررة و المتعففة عن طريق تثبيت
                         اماكن معيشتهم ليتسنى للفرق المساعدة وميسوري الحال للتواصل معهم وتقديم يد العون لهم
                         <a href="/register">
@@ -102,7 +97,12 @@
 
 
                 @endif
+                @if(session('message'))
 
+                    <div class="alert alert-primary  animated shake" role="alert">
+                        <h4>{{session('message')}}</h4>
+                    </div>
+                @endif
                 <div class="alert alert-warning" role="alert">
                     الكثير من العوائل بانتظار سلة غذائية او مساعدة , اعرف جارك المستحق
                 </div>
