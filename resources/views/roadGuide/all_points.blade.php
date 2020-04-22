@@ -152,7 +152,7 @@
                                 <tr>
                                     <th scope="row">تأريخ اخر وصول</th>
                                     @if($point->date == "")
-                                        <td>  لم يتم الوصول لهم بعد - ينتظرون مساعدتكم</td>
+                                        <td style="font-size: 18px">  لم يتم الوصول لهم بعد - ينتظرون مساعدتكم</td>
 
                                     @else
 
@@ -184,6 +184,23 @@
                                 </thead>
                                 <tbody>
                                 <tr>
+                                    <th scope="row">رقم الهاتف</th>
+                                    <td >
+
+                                        <a href="tel:{{$point->t_number}}">
+                                            <svg class="bi bi-phone" width="1em" height="1em" viewBox="0 0 16 16"
+                                                 fill="currentColor"
+                                                 xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd"
+                                                      d="M11 1H5a1 1 0 00-1 1v12a1 1 0 001 1h6a1 1 0 001-1V2a1 1 0 00-1-1zM5 0a2 2 0 00-2 2v12a2 2 0 002 2h6a2 2 0 002-2V2a2 2 0 00-2-2H5z"
+                                                      clip-rule="evenodd"/>
+                                                <path fill-rule="evenodd" d="M8 14a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/>
+                                            </svg> {{$point->t_number}} اتصال </a>
+                                        <a></a>
+                                    </td>
+
+                                </tr>
+                               <tr>
                                     <th scope="row">رقم البطاقة التموينية</th>
                                     <td >{{$point->f1}}</td>
 
@@ -300,21 +317,9 @@
 
 
 
-
-                            <a href="tel:{{$point->t_number}}">
-                                <svg class="bi bi-phone" width="1em" height="1em" viewBox="0 0 16 16"
-                                     fill="currentColor"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                          d="M11 1H5a1 1 0 00-1 1v12a1 1 0 001 1h6a1 1 0 001-1V2a1 1 0 00-1-1zM5 0a2 2 0 00-2 2v12a2 2 0 002 2h6a2 2 0 002-2V2a2 2 0 00-2-2H5z"
-                                          clip-rule="evenodd"/>
-                                    <path fill-rule="evenodd" d="M8 14a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/>
-                                </svg> {{$point->t_number}} اتصال </a>
-                            <a></a>
-
                         @endif
 
-                    <a href="javascript:void(0);" class="location btn btn-shadow"
+                    <a href="javascript:void(0);" class="location btn btn-shadow" style="margin-bottom: 20px"
                        data-latitude="{{$point->latitude}}" data-longitude="{{$point->longitude}}">
                         <svg class="bi bi-map" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
                              xmlns="http://www.w3.org/2000/svg">
@@ -324,12 +329,10 @@
                         </svg>
                         <h6>الموقع على الخارطة</h6></a>
 
-                        <div class="card-body">
-
 
                         @if(isset($_COOKIE["USER_SESSION"]))
                             @if($point->date == null)
-                                <a href="/validate/{{$point->id}}" class="btn btn-dark">
+                                <a href="/validate/{{$point->id}}" class="btn btn-dark" style="margin-bottom: 20px">
 
                                     <svg class="bi bi-eye" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor"
                                          xmlns="http://www.w3.org/2000/svg">
@@ -340,10 +343,10 @@
                                               d="M8 5.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM4.5 8a3.5 3.5 0 117 0 3.5 3.5 0 01-7 0z"
                                               clip-rule="evenodd"/>
                                     </svg>
-                                    كشف </a>
+                                    تم الكشف </a>
                             @endif
 
-                            <a href="/arrived_now/{{$point->id}}" class="btn btn-success">
+                            <a href="/arrived_now/{{$point->id}}" class="btn btn-success"  style="margin-bottom: 20px">
 
                                 <svg class="bi bi-check-all" width="1em" height="1em" viewBox="0 0 16 16"
                                      fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -352,12 +355,10 @@
                                           clip-rule="evenodd"/>
                                     <path d="M6.25 8.043l-.896-.897a.5.5 0 10-.708.708l.897.896.707-.707zm1 2.414l.896.897a.5.5 0 00.708 0l7-7a.5.5 0 00-.708-.708L8.5 10.293l-.543-.543-.707.707z"/>
                                 </svg>
-                                تسليم سلة الان </a>
+                                تسليم مساعدة الان </a>
 
                         @endif
 
-
-                        </div>
 
                     {{--<div class="card-footer text-muted">--}}
                     {{--اضغط وصلت في حالة تسليمهم سلة او مساعدة الان--}}
