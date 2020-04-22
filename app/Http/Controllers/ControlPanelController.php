@@ -358,12 +358,12 @@ class ControlPanelController extends Controller
         $point->longitude = Input::get("longitude");
         $user_name = session()->get("USER_NAME");
 
-        $pointExisit = Point::where("f1", $point->f1)->first();
-        if ($pointExisit) {
-            $message = "تمت تسجيل هذه العائلة من قبل  بواسطة -  " . $pointExisit->username . "     رقم العائلة =    " . $pointExisit->id;
-            return redirect("/new_family")->with('message', $message)->with('id', $pointExisit->id);
-
-        }
+//        $pointExisit = Point::where("f1", $point->f1)->first();
+//        if ($pointExisit) {
+//            $message = "تمت تسجيل هذه العائلة من قبل  بواسطة -  " . $pointExisit->username . "     رقم العائلة =    " . $pointExisit->id;
+//            return redirect("/new_family")->with('message', $message)->with('id', $pointExisit->id);
+//
+//        }
 
         if ($user_name) {
 //            $mydatetime = Carbon::now()->addDay(-1);
