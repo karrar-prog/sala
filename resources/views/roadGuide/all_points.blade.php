@@ -346,7 +346,7 @@
                                     تم الكشف </a>
                             @endif
 
-                            <a href="/arrived_now/{{$point->id}}" class="btn btn-success"  style="margin-bottom: 20px">
+                            <a href="/show_help/{{$point->id}}" class="btn btn-success"  style="margin-bottom: 20px">
 
                                 <svg class="bi bi-check-all" width="1em" height="1em" viewBox="0 0 16 16"
                                      fill="currentColor" xmlns="http://www.w3.org/2000/svg">

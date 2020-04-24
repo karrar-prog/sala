@@ -28,7 +28,7 @@ class PointController extends Controller
                 ->get();
 
         } else {
-            $allPoints = DB::table('point')->where("category", "<>", 4)->where('date',  "=" ,null)
+            $allPoints = DB::table('point')->where("category", "<>", 4)->where('date', "=", null)
                 ->get();
 
         }
@@ -39,6 +39,8 @@ class PointController extends Controller
         } catch (Exception $s) {
 
         }
+
+
         $type3 = DB::table('point')->where("category", "<>", 4)->where('date', null)->count();
         $type2 = DB::table('point')->where("category", "<>", 4)->where('date', '=', $mydate)->count();
         $type1 = DB::table('point')->where("category", "<>", 4)->where('date', '<', $mydate)->count();
@@ -50,9 +52,21 @@ class PointController extends Controller
     {
         $use_name = "";
         $phone = "";
+        $his_name = "";
+        $basket = "تجربة";
+        $basket_day = 2;
+
         try {
             $use_name = session()->get("USER_NAME");
             $phone = session()->get("USER_USERNAME");
+
+            $user = User::where("name", "=", $use_name)->first();
+            $his_name = $user->his_name;
+            if ($user) {
+                $basket = $user->basket;
+                $basket_day = $user->basket_days;
+
+            }
 
         } catch (Exception $s) {
 
@@ -60,11 +74,12 @@ class PointController extends Controller
         $mydatetime = Carbon::now();
         $mydate = $mydatetime->toDateString();
 
+
         $type3 = DB::table('point')->where("category", "<>", 4)->where('date', null)->count();
         $type2 = DB::table('point')->where("category", "<>", 4)->where('date', '=', $mydate)->count();
         $type1 = DB::table('point')->where("category", "<>", 4)->where('date', '<', $mydate)->count();
-        $users =DB::table('user')->distinct()->get(['name']);
-        return view("/about_app", ["user_name" => $use_name, "phone" => $phone, "type1" => $type1, "type2" => $type2, "type3" => $type3 , "users"=>$users]);
+        $users = DB::table('user')->distinct()->get(['name']);
+        return view("/about_app", ["user_name" => $use_name, "his_name" => $his_name, "phone" => $phone, "type1" => $type1, "type2" => $type2, "type3" => $type3, "users" => $users, "basket" => $basket, "basket_day" => $basket_day]);
     }
 
     public function getPublicPoints()

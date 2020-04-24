@@ -13,11 +13,23 @@
             <div class="card-header">
                 <h5 class="card-title"><h5 class="card-title">{{$user_name}}</h5>
 
-                    اهلا بكم
+
+                </h5>
+             <h5 class="card-title"><h5 class="card-title"></h5>
+
+                 {{$his_name}}
+                </h5>
+             <h5 class="card-title"><h5 class="card-title"></h5>
+
+                 {{$phone}}
                 </h5>
 
+
             </div>
-            <h5 class="card-title">{{$phone}}
+
+
+            <h5 class="card-title">
+
                 <div class="card-body">
 
                     <a href="/register" style="width: 230px;" class="btn btn-shadow">
@@ -142,6 +154,37 @@
                             </a>
                         </div>
                     </li>
+                </div>
+                <div class="container alert alert-success">
+
+                    سلة اليوم
+                    <div class="row">
+
+
+                        <div class="col-12 d-flex justify-content-center ">
+                            <form class="col-12 col-sm-6" method="post" action="/edit_basket">
+                                @csrf
+
+                                <div class="input-group">
+
+
+                                    <textarea  style="height: 200px" name="basket"  class="form-control" >{{$basket}}</textarea>
+                                </div>
+
+
+                                <span style="width: 100%" class="input-group-text"> تكفي لكم يوم</span>
+
+                                <input  style="width: 100%" type="number" class="form-control" id="input_basket_day" name="basket_day"
+                                        value="{{$basket_day}}">
+
+                                <button style="margin-top: 10px"   id="btn_location" type="submit" class="btn btn-primary"><i class="fa fa-save fa-2x">   </i>    حفظ     </button>
+
+                            </form>
+
+
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="card text-center">

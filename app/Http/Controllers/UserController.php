@@ -9,27 +9,29 @@ use Illuminate\Support\Facades\Input;
 
 class UserController extends Controller
 {
-    public function register() {
+    public function register()
+    {
         $username = session()->get("USER_NAME");
-        if($username)
-        {
-            return view("user.register",["username"=>$username]);
-        }else
-        {
+        if ($username) {
+            return view("user.register", ["username" => $username]);
+        } else {
             return view('user.contact');
 
         }
 
     }
-    public function register2() {
+
+    public function register2()
+    {
         $username = session()->get("USER_NAME");
 
-            return view("user.register2",["username"=>$username]);
+        return view("user.register2", ["username" => $username]);
 
 
     }
 
-    public function registerValidation(Request $request) {
+    public function registerValidation(Request $request)
+    {
         $rules = [
             "name" => "required|min:8",
             "username" => "required|unique:user,username",
@@ -66,9 +68,11 @@ class UserController extends Controller
         session()->put("USER_SESSION", $user->session);
         session()->save();
 
-        return redirect("/")->withCookie(cookie('USER_SESSION' , $user->session , 1000000000));
+        return redirect("/")->withCookie(cookie('USER_SESSION', $user->session, 1000000000));
     }
-    public function change_name(Request $request) {
+
+    public function change_name(Request $request)
+    {
 
         $id = Input::get("id");
 
@@ -81,13 +85,15 @@ class UserController extends Controller
         return back();
 
 
-       }
+    }
 
-    public function login() {
+    public function login()
+    {
         return view("user.login");
     }
 
-    public function loginValidation(Request $request) {
+    public function loginValidation(Request $request)
+    {
         $rules = [
             "username" => "required",
             "password" => "required"
@@ -104,7 +110,7 @@ class UserController extends Controller
         $username = Input::get("username");
         $password = Input::get("password");
 
-        $user = User::where("username","=",$username)->where("password","=",$password)->first();
+        $user = User::where("username", "=", $username)->where("password", "=", $password)->first();
 
         if (!$user)
             return redirect("/login")->with('ErrorLoginMessage', "فشل تسجيل الدخول !!! أعد المحاولة مرة أخرى.");
@@ -119,10 +125,11 @@ class UserController extends Controller
         session()->put("USER_SESSION", $user->session);
         session()->save();
 
-        return redirect("/")->withCookie(cookie('USER_SESSION' , $user->session , 1000000000));
+        return redirect("/")->withCookie(cookie('USER_SESSION', $user->session, 1000000000));
     }
 
-    public function logout() {
+    public function logout()
+    {
         $user = User::where("session", "=", Cookie::get("USER_SESSION"))->first();
 
         if (!$user)
@@ -149,22 +156,22 @@ class UserController extends Controller
         $phone = "";
         try {
             $user_name = session()->get("USER_NAME");
-if($user_name)
-{
-    $users =User::where("name",$user_name)->get();
-    $user_name = session()->get("USER_USERNAME");
-    $name = session()->get("USER_NAME");
+            if ($user_name) {
+                $users = User::where("name", $user_name)->get();
+                $user_name = session()->get("USER_USERNAME");
+                $name = session()->get("USER_NAME");
 
-    return view("user.my_team", ["users" => $users,"username"=>$user_name,"name"=>$name]);
+                return view("user.my_team", ["users" => $users, "username" => $user_name, "name" => $name]);
 
-}else{
-    redirect();
-}
+            } else {
+                redirect();
+            }
 
         } catch (Exception $s) {
-redirect();
+            redirect();
 
         }
 
     }
+
 }

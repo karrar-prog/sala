@@ -78,8 +78,7 @@
                                 {{session('message')}}
                                  <div class="form-group  ">
                                      @if(isset($_COOKIE["USER_SESSION"]))
-                                         <a href="/single/ {{session('id')}}">مشاهدة تفاصيل هذه العائلة</a>
-
+                                         <a href="/single/{{session('id')}}">مشاهدة تفاصيل هذه العائلة</a>
                                      @endif
 
                                     <input  oninput="setCustomValidity('')" type="number" oninvalid="this.setCustomValidity('يجب ادخال رقم البطاقة')" class="form-control" id="input_f1" required name="f1" placeholder="ادخل رقم بطاقة التموينية">

@@ -7,6 +7,7 @@ use App\Models\Center;
 use App\Models\Lost;
 use App\Models\Majales;
 use App\Models\Point;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
@@ -389,6 +390,60 @@ class ControlPanelController extends Controller
 
 
     }
+    public function edit_basket(Request $request)
+    {
+        $basket = $request->get("basket");
+        $basket_day = $request->get("basket_day");
+        try {
+            $USER_NAME = session()->get("USER_NAME");
+            if ($USER_NAME) {
+
+
+                    DB::table('user')
+                        ->where('name', $USER_NAME)
+                        ->update(['basket' => $basket  , 'basket_days' => $basket_day]);
+
+                    return    redirect("/");
+
+
+
+            } else {
+                return   redirect("/login");
+
+            }
+
+        } catch (Exception $s) {
+            return  redirect("/login");
+
+        }
+
+    }
+    public function show_help($id)
+    {
+        try {
+            $USER_NAME = session()->get("USER_NAME");
+            $user_info = User::where("name" ,$USER_NAME )->first();
+             if ($user_info) {
+                 $point_id = $id;
+
+                 $basket = $user_info->basket;
+                $basket_day = $user_info->basket_days;
+
+                return   view("/show_help",["basket"=>$basket,"point_id"=>$point_id,"basket_day"=>$basket_day]);
+
+
+
+            } else {
+                return   redirect("/login");
+
+            }
+
+        } catch (Exception $s) {
+            return  redirect("/login");
+
+        }
+
+    }
 
     public function valid_point($id)
     {
@@ -416,11 +471,16 @@ class ControlPanelController extends Controller
 
     }
 
-    public function arrived_now($id)
+    public function arrived_now(Request $request)
     {
+
         $name = "";
         $user_name = session()->get("USER_NAME");
         $user_phone = session()->get("USER_USERNAME");
+
+        $id = $request->get("id");
+        $basket = $request->get("basket");
+        $basket_days = $request->get("basket_day");
         if ($user_name) {
             $point = Point::find(trim($id));
             $mydatetime = Carbon::now();

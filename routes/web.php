@@ -54,8 +54,10 @@ Route::get("/123456789123456789/delete_point/{id}", "ControlPanelController@dele
 Route::get("/jsdlfdslfflsdfflrjjdkrkjd24324234admin_register", "UserController@register2");
 Route::get("/my_family", "ControlPanelController@my_family");
 Route::get("/single/{id}", "ControlPanelController@single");
-Route::get("/arrived_now/{id}", "ControlPanelController@arrived_now");
+Route::post("/arrived_now", "ControlPanelController@arrived_now");
 Route::get("/my_team", "UserController@my_team");
 
 Route::post("/change_name", "UserController@change_name");
 
+Route::post("/edit_basket", "ControlPanelController@edit_basket");
+Route::get("/show_help/{id}", "ControlPanelController@show_help");
