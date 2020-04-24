@@ -11,10 +11,7 @@
     @if(isset($_COOKIE["USER_SESSION"]))
         <div class="card text-center">
             <div class="card-header">
-                <h5 class="card-title"><h5 class="card-title">{{$user_name}}</h5>
-
-
-                </h5>
+              
              <h5 class="card-title"><h5 class="card-title"></h5>
 
                  {{$his_name}}

@@ -61,7 +61,8 @@ class PointController extends Controller
             $phone = session()->get("USER_USERNAME");
 
             $user = User::where("name", "=", $use_name)->first();
-            $his_name = $user->his_name;
+
+//            $his_name = $user->his_name;
             if ($user) {
                 $basket = $user->basket;
                 $basket_day = $user->basket_days;
