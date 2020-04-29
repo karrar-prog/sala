@@ -4,5 +4,5 @@
     {{--<option selected value="0">العوام</option>--}}
     {{--<option selected value="0">الساة</option>--}}
     <option  value="نعم">نعم</option>
-    <option  value="نعم">لا</option>
+    <option  value="لا">لا</option>
 </select>

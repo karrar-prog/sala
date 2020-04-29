@@ -92,21 +92,76 @@
 
 
                 <div class="card text-center btn btn-shadow" style="margin-right: -40px;margin-top: 40px">
-                    <div class="card-header">
 
                         @if(isset($_COOKIE["USER_SESSION"]))
-                            <h5 class="card-title">{{$point->id}}</h5>
-                            <h5 class="card-title">{{$point->name}}</h5>
+
+                            <table class="table table-striped">
+
+                                <tbody>
+                                <tr>
+                                    <th scope="row">رقم العائلة</th>
+
+
+                                    <td>{{$point->id}}</td>
+
+
+
+                                </tr>
+
+                                <tr>
+                                    <th scope="row">اسم العائلة</th>
+
+
+                                    <td>{{$point->name}}</td>
+
+
+
+                                </tr>
+
+
+
+                                </tbody>
+                            </table>
+
 
                         @else
                             <h5 class="card-title">{{$point->id}}</h5>
 
                         @endif
-                            <h5 class="card-title">
+                            <table class="table table-striped">
+
+                                <tbody>
+                                <tr>
+                                    <th scope="row">تم الوصول بواسطة</th>
+                                    @if($point->date == "")
+                                        <td> لايوجد</td>
+
+                                    @else
+
+                                        <td>{{$point->username}}</td>
+
+                                    @endif
 
 
+                                </tr>
 
-                            </h5>
+
+                                <tr>
+                                    <th >تأريخ اخر وصول</th>
+                                    @if($point->date == "")
+                                        <td style="font-size: 18px">  لم يتم الكشف </td>
+
+                                    @else
+
+                                        <td>  {{$point->date}}</td>
+
+                                    @endif
+
+                                </tr>
+
+                                </tbody>
+                            </table>
+
                             @if(isset($_COOKIE["USER_SESSION"]))
                                 @if($user_name == $point->username )
 
@@ -134,50 +189,37 @@
                                         حذف
                                     </a>
                                 @endif
-
+                                    <a style="margin: 10px"  href="/show_help/{{$point->id}}" class="btn btn-success"
+                                      >
+                                        <svg class="bi bi-check-all" width="2em" height="2em" viewBox="0 0 16 16"
+                                             fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                  d="M12.354 3.646a.5.5 0 010 .708l-7 7a.5.5 0 01-.708 0l-3.5-3.5a.5.5 0 11.708-.708L5 10.293l6.646-6.647a.5.5 0 01.708 0z"
+                                                  clip-rule="evenodd"/>
+                                            <path d="M6.25 8.043l-.896-.897a.5.5 0 10-.708.708l.897.896.707-.707zm1 2.414l.896.897a.5.5 0 00.708 0l7-7a.5.5 0 00-.708-.708L8.5 10.293l-.543-.543-.707.707z"/>
+                                        </svg>
+تسليم مساعدة                                    </a>
+                    <a href="javascript:void(0);" class="location btn btn-shadow" style="margin: 20px"
+                       data-latitude="{{$point->latitude}}" data-longitude="{{$point->longitude}}">
+                        <svg class="bi bi-map" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                  d="M15.817.613A.5.5 0 0116 1v13a.5.5 0 01-.402.49l-5 1a.502.502 0 01-.196 0L5.5 14.51l-4.902.98A.5.5 0 010 15V2a.5.5 0 01.402-.49l5-1a.5.5 0 01.196 0l4.902.98 4.902-.98a.5.5 0 01.415.103zM10 2.41l-4-.8v11.98l4 .8V2.41zm1 11.98l4-.8V1.61l-4 .8v11.98zm-6-.8V1.61l-4 .8v11.98l4-.8z"
+                                  clip-rule="evenodd"/>
+                        </svg>
+مشاهدة على الخارطة                                    </a>
                             @endif
-                    </div>
-                    <h5 class="card-title">
-
-                    </h5>
-
-                        @if(isset($_COOKIE["USER_SESSION"]))
-                            <h5 class="card-title"> {{$point->description}} </h5>
-                        @else
-                            <h5 class="card-title"> لمزيد من التفاصيل تواصل مع صاحب الحملة</h5>
-                        @endif
-                            <table class="table table-striped">
-
-                                <tbody>
-                                <tr>
-                                    <th scope="row">تأريخ اخر وصول</th>
-                                    @if($point->date == "")
-                                        <td style="font-size: 18px">  لم يتم الوصول لهم بعد - ينتظرون مساعدتكم</td>
-
-                                    @else
-
-                                        <td>  {{$point->date}}</td>
-
-                                    @endif
-
-                                </tr>
-                                <tr>
-                                    <th scope="row">تم الوصول بواسطة</th>
-                                    @if($point->date == "")
-                                        <td> لايوجد</td>
-
-                                    @else
-
-                                        <td>{{$point->username}}</td>
-
-                                    @endif
 
 
-                                </tr>
 
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                       عرض التفاصيل
+                    </button>
 
-                                </tbody>
-                            </table>
+                    <div class="collapse" id="collapseExample">
+                        <div class="card card-body">
+
+                @if(isset($_COOKIE["USER_SESSION"]))
                             <table class="table table-striped">
                                 <thead>
 
@@ -208,6 +250,11 @@
                                 <tr>
                                     <th scope="row">اسم المختار</th>
                                     <td>{{$point->admin_name}}</td>
+
+                                </tr>
+                                <tr>
+                                    <th scope="row">اسم الحي واقرب نقطة دالة</th>
+                                    <td>{{$point->description}} </td>
 
                                 </tr>
 
@@ -244,7 +291,7 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <th scope="row">نوع العائلةيوجد معيل</th>
+                            <th scope="row">يوجد معيل</th>
                             <td>{{$point->father}}</td>
 
                         </tr>
@@ -305,29 +352,24 @@
 
                                 </tr>
                                 <tr>
-                                    <th scope="row">تفاصيل اخرى</th>
+                                    <th scope="row">الخصوصية</th>
                                     <td>{{$point->f3}}</td>
 
                                 </tr>
 
                                 </tbody>
                             </table>
-
-                        @if(isset($_COOKIE["USER_SESSION"]))
+                    @else
+                        <h5 class="card-title"> لمزيد من التفاصيل تواصل مع صاحب الحملة</h5>
+                    @endif
+                        </div>
+                    </div>
+                @if(isset($_COOKIE["USER_SESSION"]))
 
 
 
                         @endif
 
-                    <a href="javascript:void(0);" class="location btn btn-shadow" style="margin-bottom: 20px"
-                       data-latitude="{{$point->latitude}}" data-longitude="{{$point->longitude}}">
-                        <svg class="bi bi-map" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
-                             xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                  d="M15.817.613A.5.5 0 0116 1v13a.5.5 0 01-.402.49l-5 1a.502.502 0 01-.196 0L5.5 14.51l-4.902.98A.5.5 0 010 15V2a.5.5 0 01.402-.49l5-1a.5.5 0 01.196 0l4.902.98 4.902-.98a.5.5 0 01.415.103zM10 2.41l-4-.8v11.98l4 .8V2.41zm1 11.98l4-.8V1.61l-4 .8v11.98zm-6-.8V1.61l-4 .8v11.98l4-.8z"
-                                  clip-rule="evenodd"/>
-                        </svg>
-                        <h6>الموقع على الخارطة</h6></a>
 
 
                         @if(isset($_COOKIE["USER_SESSION"]))
@@ -346,16 +388,6 @@
                                     تم الكشف </a>
                             @endif
 
-                            <a href="/show_help/{{$point->id}}" class="btn btn-success"  style="margin-bottom: 20px">
-
-                                <svg class="bi bi-check-all" width="1em" height="1em" viewBox="0 0 16 16"
-                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                          d="M12.354 3.646a.5.5 0 010 .708l-7 7a.5.5 0 01-.708 0l-3.5-3.5a.5.5 0 11.708-.708L5 10.293l6.646-6.647a.5.5 0 01.708 0z"
-                                          clip-rule="evenodd"/>
-                                    <path d="M6.25 8.043l-.896-.897a.5.5 0 10-.708.708l.897.896.707-.707zm1 2.414l.896.897a.5.5 0 00.708 0l7-7a.5.5 0 00-.708-.708L8.5 10.293l-.543-.543-.707.707z"/>
-                                </svg>
-                                تسليم مساعدة الان </a>
 
                         @endif
 
@@ -484,7 +516,7 @@
                 position: center
             });
         }
-
+        $('.collapse').collapse()
         $('.location').on('click', function () {
             $('#modal').modal({
                 backdrop: 'static',

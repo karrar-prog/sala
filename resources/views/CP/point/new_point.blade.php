@@ -20,6 +20,13 @@
 
                     </div>
 
+                    <div class="form-group alert alert-danger  ">
+                        <div class="form-group">
+                            @include("items.privicy")
+                        </div>
+                        {{--<input  class="form-control" id="input_f3"  name="f3" placeholder="تفاصيل اخرى">--}}
+                    </div>
+
 
                     <div class="form-group alert alert-success ">
 
@@ -153,10 +160,6 @@
                     </div>
                     <div class="form-group ">
                         <input  class="form-control" id="input_f2"  name="f2" placeholder="احتياج خاص">
-                    </div>
-                    <div class="form-group ">
-
-                        <input  class="form-control" id="input_f3"  name="f3" placeholder="تفاصيل اخرى">
                     </div>
 
 
