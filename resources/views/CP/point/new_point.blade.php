@@ -150,13 +150,13 @@
                             اذا واجهت مشكلة في تحديد موقعك -افتح رابط سلة الخير في متصفح كروم (chrome) أو سفاري (safari)
 
                             <a id="btn_get_location" class="btn btn-outline-info w-100" onclick="getLocation()"><i
-                                        class="fa fa-street-view fa-2x"> </i> تحديد موقعي الحالي </a>
+                                        class="fa fa-street-view fa-2x"> </i>اضغط هنا لتحديد موقعك الجغرافي </a>
                         </div>
 
-                        <button name="location" style="visibility: hidden" id="btn_location" type="submit"
+                        <button name="location"  id="btn_location" type="submit"
                                 class="btn btn-primary w-100 mt-5"><i class="fa fa-save fa-2x"> </i> ارسال الطلب
                         </button>
-                        <div style="visibility: hidden" id="message2" class="alert alert-success " role="alert">
+                        <div  id="message2" class="alert alert-success " role="alert">
                             في حالة الضغط على زر (ارسال الطلب) انت تتعهد امام الله بصحة المعلومات المدخلة
                         </div>
                     </div>
