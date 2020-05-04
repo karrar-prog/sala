@@ -507,12 +507,13 @@ class ControlPanelController extends Controller
     public function family_search(Request $request)
     {
         $days = $request->get("t_day");
+        $f3 = $request->get("f3");
 
         if ($days) {
             $new_date = Carbon::now()->addDay(-value($days));
             $true_date = Carbon::parse($new_date)->format('yy-m-d');
 
-            $allPoints = Point::whereDate('date', '<', $true_date)->orWhere('date', null)->orderBy("date", "desc")->paginate(50);
+            $allPoints = Point::where('f3', 'like', $f3)->whereDate('date', '<', $true_date)->orWhere('date', null)->orderBy("date", "desc")->paginate(50);
 
 
         } else {

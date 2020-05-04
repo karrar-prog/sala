@@ -41,8 +41,10 @@
                                     <div style="width: 250px" class="col-sm-3">
                                         <input style="width: 250px" type="number" class="form-control" id="input_name" name="t_day" required
                                                placeholder="عدد الايام">
-
-                                        <button style="width: 250px" type="submit" class="btn btn-shadow "> عوائل لم تصل لها مساعدة منذ
+                                        <div style="width: 250px ;margin-top: 10px" class="form-group">
+                                            @include("items.alhay")
+                                        </div>
+                                        <button style="width: 250px" type="submit" class="btn btn-shadow "> ابحث الان
                                             <svg class="bi bi-search" width="1em" height="1em" viewBox="0 0 16 16"
                                                  fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd"
