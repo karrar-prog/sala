@@ -66,7 +66,11 @@
                     <form class="col-12 col-sm-6 " method="post" action="/family_search">
                         @csrf
                         <div style="margin-top: 10px ; margin-bottom: 10px" class="col-sm-3">
-
+                            <input style="width: 250px" type="number" class="form-control" id="input_name" name="t_day" required
+                                   placeholder="لم نصل لهم منذ (اكتب عدد الايام) ايام">
+                            <div style="width: 250px ;margin-top: 10px" class="form-group">
+                                @include("items.alhay")
+                            </div>
                             <button type="submit" class="btn btn-shadow "> عوائل لم تصل لها مساعدة منذ
                                 <svg class="bi bi-search" width="1em" height="1em" viewBox="0 0 16 16"
                                      fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -81,12 +85,7 @@
 
 
                         </div>
-                        <div class="col-sm-3 ">
-                            <input type="number" class="form-control" id="input_name" name="t_day" required
-                                   placeholder="عدد الايام">
 
-
-                        </div>
 
                     </form>
 

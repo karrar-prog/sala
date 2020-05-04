@@ -40,7 +40,7 @@
                                     @csrf
                                     <div style="width: 250px" class="col-sm-3">
                                         <input style="width: 250px" type="number" class="form-control" id="input_name" name="t_day" required
-                                               placeholder="عدد الايام">
+                                               placeholder="لم نصل لهم منذ (اكتب عدد الايام) ايام">
                                         <div style="width: 250px ;margin-top: 10px" class="form-group">
                                             @include("items.alhay")
                                         </div>
