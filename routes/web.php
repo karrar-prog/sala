@@ -53,6 +53,7 @@ Route::get("/123456789123456789/delete_point/{id}", "ControlPanelController@dele
 
 Route::get("/jsdlfdslfflsdfflrjjdkrkjd24324234admin_register", "UserController@register2");
 Route::get("/my_family", "ControlPanelController@my_family");
+Route::get("/my_family2", "ControlPanelController@my_family2");
 Route::get("/single/{id}", "ControlPanelController@single");
 Route::post("/arrived_now", "ControlPanelController@arrived_now");
 Route::get("/my_team", "UserController@my_team");

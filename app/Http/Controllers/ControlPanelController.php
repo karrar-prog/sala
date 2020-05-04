@@ -359,12 +359,18 @@ class ControlPanelController extends Controller
         $point->longitude = Input::get("longitude");
         $user_name = session()->get("USER_NAME");
 
-//        $pointExisit = Point::where("f1", $point->f1)->first();
-//        if ($pointExisit) {
-//            $message = "تمت تسجيل هذه العائلة من قبل  بواسطة -  " . $pointExisit->username . "     رقم العائلة =    " . $pointExisit->id;
-//            return redirect("/new_family")->with('message', $message)->with('id', $pointExisit->id);
-//
-//        }
+        $pointExisit = Point::where("f1", $point->f1)->first();
+        if ($pointExisit) {
+            $message = "تمت تسجيل هذه العائلة من قبل  بواسطة -  " . $pointExisit->username . "     رقم العائلة =    " . $pointExisit->id;
+            return redirect("/new_family")->with('message', $message)->with('id', $pointExisit->id);
+
+        }
+        $pointExisit = Point::where("t_number", $point->t_number)->first();
+        if ($pointExisit) {
+            $message = "تمت تسجيل هذه العائلة من قبل  بواسطة -  " . $pointExisit->username . "     رقم العائلة =    " . $pointExisit->id;
+            return redirect("/new_family")->with('message', $message)->with('id', $pointExisit->id);
+
+        }
 
         if ($user_name) {
 //            $mydatetime = Carbon::now()->addDay(-1);
@@ -466,7 +472,7 @@ class ControlPanelController extends Controller
 
         }
 
-        return redirect("/")->with('message', "تمت توثيق عائلة ( " . $name . " ) - شكرا لك ");
+        return redirect("/single/$id")->with('message', "تمت توثيق عائلة ( " . $name . " ) - شكرا لك ");
 
 
     }
@@ -531,7 +537,7 @@ class ControlPanelController extends Controller
         $type3 = DB::table('point')->where("category", "<>", 4)->where('date', null)->count();
         $type2 = DB::table('point')->where("category", "<>", 4)->where('date', '=', $mydate)->count();
         $type1 = DB::table('point')->where("category", "<>", 4)->where('date', '<', $mydate)->count();
-        return view('roadGuide.all_points')->with([
+        return view('roadGuide.all_point2')->with([
             "allPoints" => $allPoints, "user_name" => $use_name, "type1" => $type1, "type2" => $type2, "type3" => $type3]);
     }
 
@@ -579,6 +585,28 @@ class ControlPanelController extends Controller
             }
 //            return view("/CP/point/all_point", ["points" => $points, "user_name" => $user_name]);
             return view("/roadGuide/all_points", ["allPoints" => $points, "user_name" => $user_name]);
+        } else {
+
+
+            redirect("/");
+        }
+
+    }
+   public function my_family2()
+    {
+        $name = session()->get("USER_NAME");
+        if ($name) {
+
+            $points = Point::where('username', $name)->orderBy("date", "asc")->get();
+            $user_name = "";
+            try {
+                $user_name = session()->get("USER_NAME");
+
+            } catch (Exception $s) {
+
+            }
+//            return view("/CP/point/all_point", ["points" => $points, "user_name" => $user_name]);
+            return view("/roadGuide/all_point2", ["allPoints" => $points, "user_name" => $user_name]);
         } else {
 
 

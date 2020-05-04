@@ -130,86 +130,86 @@
 
                             </row>
                         @endif
-                            @if(isset($_COOKIE["USER_SESSION"]))
+                        @if(isset($_COOKIE["USER_SESSION"]))
 
-                                <table class="table table-striped">
-
-                                    <tbody>
-                                    <tr>
-                                        <th scope="row">رقم العائلة</th>
-
-
-                                        <td>{{$point->id}}</td>
-
-
-                                    </tr>
-
-                                    <tr>
-                                        <th scope="row">اسم العائلة</th>
-
-
-                                        <td>{{$point->name}}</td>
-
-
-                                    </tr>
-
-                                    <tr>
-                                        <th scope="row">رقم الهاتف</th>
-                                        <td>
-
-                                            <a href="tel:{{$point->t_number}}">
-                                                <svg class="bi bi-phone" width="1em" height="1em" viewBox="0 0 16 16"
-                                                     fill="currentColor"
-                                                     xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill-rule="evenodd"
-                                                          d="M11 1H5a1 1 0 00-1 1v12a1 1 0 001 1h6a1 1 0 001-1V2a1 1 0 00-1-1zM5 0a2 2 0 00-2 2v12a2 2 0 002 2h6a2 2 0 002-2V2a2 2 0 00-2-2H5z"
-                                                          clip-rule="evenodd"/>
-                                                    <path fill-rule="evenodd" d="M8 14a1 1 0 100-2 1 1 0 000 2z"
-                                                          clip-rule="evenodd"/>
-                                                </svg> {{$point->t_number}} اتصال </a>
-                                            <a></a>
-                                        </td>
-
-                                    </tr>
-
-                                    </tbody>
-                                </table>
-
-
-                            @else
-                                <h5 class="card-title">{{$point->id}}</h5>
-
-                            @endif
                             <table class="table table-striped">
 
                                 <tbody>
                                 <tr>
-                                    <th scope="row">  @if($point->date == "")
-                                        <td> لايوجد</td>
+                                    <th scope="row">رقم العائلة</th>
 
-                                    @else
 
-                                        <td>{{$point->username}}</td>
+                                    <td>{{$point->id}}</td>
 
-                                        @endif</th>
-
-                                        @if($point->date == "")
-                                            <td style="font-size: 18px"> لم يتم الكشف</td>
-
-                                        @else
-
-                                            <td>  {{$point->date}}</td>
-
-                                        @endif
 
                                 </tr>
 
+                                <tr>
+                                    <th scope="row">اسم العائلة</th>
 
+
+                                    <td>{{$point->name}}</td>
+
+
+                                </tr>
+
+                                <tr>
+                                    <th scope="row">رقم الهاتف</th>
+                                    <td>
+
+                                        <a href="tel:{{$point->t_number}}">
+                                            <svg class="bi bi-phone" width="1em" height="1em" viewBox="0 0 16 16"
+                                                 fill="currentColor"
+                                                 xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd"
+                                                      d="M11 1H5a1 1 0 00-1 1v12a1 1 0 001 1h6a1 1 0 001-1V2a1 1 0 00-1-1zM5 0a2 2 0 00-2 2v12a2 2 0 002 2h6a2 2 0 002-2V2a2 2 0 00-2-2H5z"
+                                                      clip-rule="evenodd"/>
+                                                <path fill-rule="evenodd" d="M8 14a1 1 0 100-2 1 1 0 000 2z"
+                                                      clip-rule="evenodd"/>
+                                            </svg> {{$point->t_number}} اتصال </a>
+                                        <a></a>
+                                    </td>
+
+                                </tr>
 
                                 </tbody>
                             </table>
 
-                            <a style="margin: 10px" href="/show_help/{{$point->id}}" class="btn btn-success"
+
+                        @else
+                            <h5 class="card-title">{{$point->id}}</h5>
+
+                        @endif
+                        <table class="table table-striped">
+
+                            <tbody>
+                            <tr>
+                                <th scope="row">  @if($point->date == "")
+                                    <td> لايوجد</td>
+
+                                @else
+
+                                    <td>{{$point->username}}</td>
+
+                                    @endif</th>
+
+                                    @if($point->date == "")
+                                        <td style="font-size: 18px"> لم يتم الكشف</td>
+
+                                    @else
+
+                                        <td>  {{$point->date}}</td>
+
+                                    @endif
+
+                            </tr>
+
+
+
+                            </tbody>
+                        </table>
+
+                        <a style="margin: 10px" href="/show_help/{{$point->id}}" class="btn btn-success"
                         >
                             <svg class="bi bi-check-all" width="2em" height="2em" viewBox="0 0 16 16"
                                  fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -231,9 +231,17 @@
                     @endif
 
 
-                    <a href="/single/{{$point->id}}" class="btn btn-primary">
-                        عرض التفاصيل
-                    </a>
+                        <tr>
+                            <th scope="row">رقم العائلة</th>
+                            <td>{{$point->id}}</td>
+
+                        </tr>
+                        <tr>
+                            <th scope="row">اسم الحي
+                            <td>{{$point->f3}} </td>
+
+                        </tr>
+
 
                     @if($allPoints->count() == 1)
                         @if(isset($_COOKIE["USER_SESSION"]))
@@ -482,7 +490,6 @@
 
     <script>
         var x = document.getElementById("demo");
-
         function getLocation() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(showPosition, showError);
@@ -490,15 +497,12 @@
                 x.innerHTML = "Geolocation is not supported by this browser.";
             }
         }
-
         function showPosition(position) {
-
             $("#input_latitude").val(position.coords.latitude);
             $("#input_longitude").val(position.coords.longitude);
             $("#input_latitude").attr("readonly", "readonly");
             $("#input_longitude").attr("readonly", "readonly");
         }
-
         function showError(error) {
             switch (error.code) {
                 case error.PERMISSION_DENIED:
@@ -527,15 +531,12 @@
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 center: center
             };
-
             map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-
             var marker = new google.maps.Marker({
                 map: map,
                 position: center
             });
         }
-
         $('.collapse').collapse()
         $('.location').on('click', function () {
             $('#modal').modal({
