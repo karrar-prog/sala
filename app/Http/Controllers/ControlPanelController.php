@@ -559,7 +559,7 @@ class ControlPanelController extends Controller
         $user_name = session()->get("USER_NAME");
         $user_phone = session()->get("USER_USERNAME");
         if ($user_name) {
-            $points = Point::where("id", $id)->get();
+            $points = Point::where("id", $id)->orderBy("date", "desc")->paginate(50);
 //            return view("/CP/point/all_point", ["points" => $points, "user_name" => $user_name]);
             return view("/roadGuide/all_points", ["allPoints" => $points, "user_name" => $user_name]);
         } else {
