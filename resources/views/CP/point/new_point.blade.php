@@ -1,4 +1,4 @@
-@extends("layout.secondary_layout")
+@extends("layout.blank_layout")
 
 
 
