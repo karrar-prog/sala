@@ -512,13 +512,13 @@ class ControlPanelController extends Controller
             $new_date = Carbon::now()->addDay(-value($days));
             $true_date = Carbon::parse($new_date)->format('yy-m-d');
 
-            $allPoints = Point::whereDate('date', '<', $true_date)->orWhere('date', null)->get();
+            $allPoints = Point::whereDate('date', '<', $true_date)->orWhere('date', null)->orderBy("date", "desc")->paginate(50);
 
 
         } else {
             $t_search = $request->get("t_search");
 
-            $allPoints = Point::where('name', 'like', '%' . $t_search . '%')->orWhere('t_number', 'like',  $t_search )->orWhere('description', 'like', '%' . $t_search . '%')->orWhere('id', $t_search)->get();
+            $allPoints = Point::where('name', 'like', '%' . $t_search . '%')->orWhere('t_number', 'like',  $t_search )->orWhere('description', 'like', '%' . $t_search . '%')->orWhere('id', $t_search)->orderBy("date", "desc")->paginate(50);
 
         }
 
@@ -545,7 +545,7 @@ class ControlPanelController extends Controller
     {
         $username = session()->get("USER_NAME");
         if ($username) {
-            $points = Point::where("username", $username)->get();
+            $points = Point::where("username", $username)->orderBy("date", "desc")->paginate(50);
             return view("/CP/point/all_point", ["points" => $points]);
         } else {
             return view('user.contact');
@@ -575,7 +575,7 @@ class ControlPanelController extends Controller
         $name = session()->get("USER_NAME");
         if ($name) {
 
-            $points = Point::where('username', $name)->orderBy("date", "asc")->get();
+            $points = Point::where('username', $name)->orderBy("date", "desc")->paginate(50);
             $user_name = "";
             try {
                 $user_name = session()->get("USER_NAME");
@@ -597,7 +597,7 @@ class ControlPanelController extends Controller
         $name = session()->get("USER_NAME");
         if ($name) {
 
-            $points = Point::where('username', $name)->orderBy("date", "asc")->get();
+            $points = Point::where('username', $name)->orderBy("date", "desc")->paginate(50);
             $user_name = "";
             try {
                 $user_name = session()->get("USER_NAME");

@@ -436,7 +436,7 @@
 
             @endforeach
         </ul>
-
+        {!! $allPoints->render() !!}
 
     </div>
     </div>

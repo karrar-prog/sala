@@ -82,7 +82,7 @@
 
                             <input oninput="setCustomValidity('')"
                                    oninvalid="this.setCustomValidity('يجب ادخال رقم البطاقة')" class="form-control"
-                                   id="input_f1" required name="f1" placeholder="ادخل رقم بطاقة التموينية">
+                                   type="number" id="input_f1" required name="f1" placeholder="ادخل رقم بطاقة التموينية">
 
                             <input style="margin-top: 20px" class="form-control" id="input_admin_name" name="admin_name"
                                    placeholder="اسم مختار المنطقة">

@@ -412,6 +412,7 @@
 
 
             @endforeach
+            {!! $allPoints->render() !!}
         </ul>
 
 

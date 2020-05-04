@@ -21,15 +21,15 @@ class PointController extends Controller
         $city = 0;
         if ($c == "1") {
             $allPoints = Point::OrderBy("t_number")->where("city", $city)->where("category", "<>", 4)->where('date', '<', $mydate)
-                ->get();
+                ->orderBy("date", "desc")->paginate(50);
 
         } elseif ($c == "2") {
             $allPoints = Point::OrderBy("t_number")->where("category", "<>", 4)->where('date', '=', $mydate)
-                ->get();
+                ->orderBy("date", "desc")->paginate(50);
 
         } else {
             $allPoints = DB::table('point')->where("category", "<>", 4)->where('date', "=", null)
-                ->get();
+                ->orderBy("date", "desc")->paginate(50);
 
         }
         $user_name = "";
