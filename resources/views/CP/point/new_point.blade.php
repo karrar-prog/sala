@@ -166,14 +166,14 @@
                         <div class="col">
 
                             <input style="visibility: hidden;width: 20px" type="text" class="form-control"
-                                   id="input_latitude" name="latitude" required placeholder="يجب جلب البيانات">
+                                   id="input_latitude" name="latitude"  placeholder="يجب جلب البيانات">
 
                         </div>
                         <div class="col">
 
 
                             <input style="visibility: hidden;width: 20px" type="text" class="form-control"
-                                   id="input_longitude" name="longitude" required placeholder="يجب جلب البيانات">
+                                   id="input_longitude" name="longitude"  placeholder="يجب جلب البيانات">
 
                         </div>
                     </div>
