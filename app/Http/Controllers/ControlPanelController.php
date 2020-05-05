@@ -421,7 +421,7 @@ class ControlPanelController extends Controller
         $pointExisit = Point::where("f1", $f1)->first();
         if ($pointExisit) {
 
-dd("f1");
+
             $message = "تم تجديد طلبك لهذه العائلة  -  ";
             DB::table('point')
                 ->where("f1", $f1)
