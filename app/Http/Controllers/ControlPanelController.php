@@ -504,12 +504,18 @@ class ControlPanelController extends Controller
 
     }
 
-    public function family_search(Request $request)
+    public function show_family_search()
     {
-        $days = $request->get("t_day");
-        $f3 = $request->get("f3");
+        return view('search');
+    }
 
-        if ($days) {
+      public function family_search()
+    {
+        $days = Input::get('t_day', '0');
+        $f3 =  Input::get('f3', '%');
+        $t_search = Input::get("t_search","");
+
+        if ($t_search == "") {
             $new_date = Carbon::now()->addDay(-value($days));
             $true_date = Carbon::parse($new_date)->format('yy-m-d');
 
@@ -517,7 +523,6 @@ class ControlPanelController extends Controller
 
 
         } else {
-            $t_search = $request->get("t_search");
 
             $allPoints = Point::where('name', 'like', '%' . $t_search . '%')->orWhere('t_number', 'like',  $t_search )->orWhere('description', 'like', '%' . $t_search . '%')->orWhere('id', $t_search)->orderBy("date", "desc")->paginate(50);
 

@@ -36,7 +36,7 @@ Route::get("/new_family", "ControlPanelController@new_point");
 Route::post('/nearby', "ControlPanelController@nearby");
 
 Route::post('/nearone', "ControlPanelController@nearone");
-Route::post('/family_search', "ControlPanelController@family_search");
+Route::get('/family_search', "ControlPanelController@family_search")->name('family_search');
 Route::get('/my_activity', "ControlPanelController@my_activity");
 
 Route::post("/123456789123456789/insert_point", "ControlPanelController@insert_point");
@@ -52,8 +52,9 @@ Route::get("/123456789123456789/ensure_delete/{id}", "ControlPanelController@ens
 Route::get("/123456789123456789/delete_point/{id}", "ControlPanelController@delete_point");
 
 Route::get("/jsdlfdslfflsdfflrjjdkrkjd24324234admin_register", "UserController@register2");
-Route::get("/my_family", "ControlPanelController@my_family");
-Route::get("/my_family2", "ControlPanelController@my_family2");
+Route::get("/my_family", "ControlPanelController@my_family")->name('my_family');
+Route::get("/my_family2", "ControlPanelController@my_family2")->name('my_family2');
+
 Route::get("/single/{id}", "ControlPanelController@single");
 Route::post("/arrived_now", "ControlPanelController@arrived_now");
 Route::get("/my_team", "UserController@my_team");

@@ -45,7 +45,7 @@
             <div class="container">
 
                 <div class="row">
-                    <form class="col-12 col-sm-6 " method="post" action="/family_search">
+                    <form method="get"  action="/family_search" >
                         @csrf
                         <div class="col-sm-3 ">
                             <input type="text" class="form-control" id="input_name" name="t_search" required
@@ -63,7 +63,7 @@
 
                 </div>
                 <div class="row">
-                    <form class="col-12 col-sm-6 " method="post" action="/family_search">
+                    <form method="get"  action="/family_search" >
                         @csrf
                         <div style="margin-top: 10px ; margin-bottom: 10px" class="col-sm-3">
                             <input style="width: 250px" type="number" class="form-control" id="input_name" name="t_day" required
@@ -93,6 +93,8 @@
             </div>
         @endif
         <ul>
+            {!! $allPoints->render() !!}
+
             @php $i=1; @endphp
             @foreach($allPoints as $point)
 

@@ -20,7 +20,7 @@
                         <tbody>
                         <tr>
                             <td>
-                                <form class="col-12 col-sm-6 " method="post" action="/family_search">
+                                <form method="get"  action="/family_search" >
                                     @csrf
 
                                     <input style="width: 250px" type="text" class="form-control" id="input_name"
@@ -36,7 +36,8 @@
 
                             <td>
 
-                                <form method="post" action="/family_search">
+                                {{--<form method="post" action="{{ route('family_search') }}" action="/family_search">--}}
+                                    <form method="get"  action="/family_search" >
                                     @csrf
                                     <div style="width: 250px" class="col-sm-3">
                                         <input style="width: 250px" type="number" class="form-control" id="input_name" name="t_day" required
@@ -100,6 +101,7 @@
         </div>
 
         <ul>
+            {!! $allPoints->links() !!}
             @php $i=1; @endphp
             @foreach($allPoints as $point)
 
@@ -414,7 +416,7 @@
 
 
             @endforeach
-            {!! $allPoints->render() !!}
+            {!! $allPoints->links() !!}
         </ul>
 
 
