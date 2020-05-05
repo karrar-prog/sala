@@ -355,19 +355,34 @@ class ControlPanelController extends Controller
         $point->father = Input::get("father");
         $point->admin_name = Input::get("admin_name");
         $point->type = Input::get("type");
+
+        $mydatetime = Carbon::now();
+        $mydate = $mydatetime->toDateString();
+        $point->request_date = $mydate;
+
         $point->latitude = Input::get("latitude");
         $point->longitude = Input::get("longitude");
         $user_name = session()->get("USER_NAME");
 
         $pointExisit = Point::where("f1", $point->f1)->first();
         if ($pointExisit) {
-            $message = "تمت تسجيل هذه العائلة من قبل  بواسطة -  " . $pointExisit->username . "     رقم العائلة =    " . $pointExisit->id;
+            dd($pointExisit);
+            $message = "تم تجديد طلبك لهذه العائلة  -  " . $pointExisit->username . "     رقم العائلة =    " . $pointExisit->id;
+            DB::table('point')
+                ->where("f1", $point->f1)
+                ->update(['request_date' => $mydate]);
+
             return redirect("/new_family")->with('message', $message)->with('id', $pointExisit->id);
 
         }
         $pointExisit = Point::where("t_number", $point->t_number)->first();
         if ($pointExisit) {
-            $message = "تمت تسجيل هذه العائلة من قبل  بواسطة -  " . $pointExisit->username . "     رقم العائلة =    " . $pointExisit->id;
+            DB::table('point')
+                ->where("t_number", $point->t_number)
+                ->update(['request_date' => $mydate]);
+
+            $message = "تم تجديد طلبك لهذه العائلة -  " . $pointExisit->username . "     رقم العائلة =    " . $pointExisit->id;
+
             return redirect("/new_family")->with('message', $message)->with('id', $pointExisit->id);
 
         }
@@ -381,13 +396,12 @@ class ControlPanelController extends Controller
             $message = "تمت اضافة العائلة - شكرا لك " . $user_name;
 
 
-        }else
-        {
-            $message = " شكرا لك " .   Input::get("name") . " تم استلام معلومات عائلتك - سوف تتواصل معكم فرق الخير عن قريب لتقديم المساعدة " ;
+        } else {
+            $message = " شكرا لك " . Input::get("name") . " تم استلام معلومات عائلتك - سوف تتواصل معكم فرق الخير عن قريب لتقديم المساعدة ";
 
         }
         if ($point->save()) {
-            return redirect("/")->with('message',$message);
+            return redirect("/")->with('message', $message);
 
         } else {
             return redirect("/")->with('message', "لم تتم العملية ");
@@ -396,6 +410,39 @@ class ControlPanelController extends Controller
 
 
     }
+    public function renew(Request $request)
+    {
+
+        $f1 = Input::get("f1");
+        $t_number = Input::get("t_number");
+        $mydatetime = Carbon::now();
+        $mydate = $mydatetime->toDateString();
+
+        $pointExisit = Point::where("f1", $f1)->first();
+        if ($pointExisit) {
+
+dd("f1");
+            $message = "تم تجديد طلبك لهذه العائلة  -  ";
+            DB::table('point')
+                ->where("f1", $f1)
+                ->update(['request_date' => $mydate]);
+
+            return redirect("/new_family")->with('message', $message)->with('id', $pointExisit->id);
+
+        }else
+        {
+            $message = "لم يتم تسجيل هذه العائلة من قبل - سجل الان";
+
+            return redirect("/new_family")->with('message', $message)->with('id', "0");
+
+        }
+
+
+
+
+
+    }
+
     public function edit_basket(Request $request)
     {
         $basket = $request->get("basket");
@@ -405,47 +452,46 @@ class ControlPanelController extends Controller
             if ($USER_NAME) {
 
 
-                    DB::table('user')
-                        ->where('name', $USER_NAME)
-                        ->update(['basket' => $basket  , 'basket_days' => $basket_day]);
+                DB::table('user')
+                    ->where('name', $USER_NAME)
+                    ->update(['basket' => $basket, 'basket_days' => $basket_day]);
 
-                    return    redirect("/");
-
+                return redirect("/");
 
 
             } else {
-                return   redirect("/login");
+                return redirect("/login");
 
             }
 
         } catch (Exception $s) {
-            return  redirect("/login");
+            return redirect("/login");
 
         }
 
     }
+
     public function show_help($id)
     {
         try {
             $USER_NAME = session()->get("USER_NAME");
-            $user_info = User::where("name" ,$USER_NAME )->first();
-             if ($user_info) {
-                 $point_id = $id;
+            $user_info = User::where("name", $USER_NAME)->first();
+            if ($user_info) {
+                $point_id = $id;
 
-                 $basket = $user_info->basket;
+                $basket = $user_info->basket;
                 $basket_day = $user_info->basket_days;
 
-                return   view("/show_help",["basket"=>$basket,"point_id"=>$point_id,"basket_day"=>$basket_day]);
-
+                return view("/show_help", ["basket" => $basket, "point_id" => $point_id, "basket_day" => $basket_day]);
 
 
             } else {
-                return   redirect("/login");
+                return redirect("/login");
 
             }
 
         } catch (Exception $s) {
-            return  redirect("/login");
+            return redirect("/login");
 
         }
 
@@ -491,8 +537,13 @@ class ControlPanelController extends Controller
             $point = Point::find(trim($id));
             $mydatetime = Carbon::now();
             $mydate = $mydatetime->toDateString();
+            if($point->date = null)
+            {
+                $point->username = $user_name;
+            }
             $point->date = $mydate;
             $point->arrived_now = $user_name;
+            $point->request_date = null;
             $name = $point->name;
             $point->userphone = $user_phone;
             $point->save();
@@ -509,22 +560,60 @@ class ControlPanelController extends Controller
         return view('search');
     }
 
-      public function family_search()
+    public function family_search()
     {
         $days = Input::get('t_day', '0');
-        $f3 =  Input::get('f3', '%');
-        $t_search = Input::get("t_search","");
+        $f3 = Input::get('f3', '%');
+        $t_search = Input::get("t_search", "");
+        $status = Input::get("status", "%");
 
         if ($t_search == "") {
-            $new_date = Carbon::now()->addDay(-value($days));
+
+            $new_date = Carbon::now();
             $true_date = Carbon::parse($new_date)->format('yy-m-d');
+//
+            if ($status == "%") {
+                $allPoints = Point::where('f3', 'like', $f3)->orWhere('date', null)->orderBy("date", "desc")->paginate(50);
 
-            $allPoints = Point::where('f3', 'like', $f3)->whereDate('date', '<', $true_date)->orWhere('date', null)->orderBy("date", "desc")->paginate(50);
+            } elseif ($status == "1") {
+                $allPoints = Point::where('f3', 'like',  $f3)->whereDate('date',$true_date)->whereNull('request_date')->orderBy("date", "desc")->paginate(50);
 
+            } elseif ($status == "2") {
+                $allPoints = Point::where('f3', 'like',  $f3)->orderBy("date", "desc")->paginate(50);
+
+            } elseif ($status == "3") {
+                $allPoints = Point::where('f3', 'like', $f3)->whereNull('date')->orderBy("id", "desc")->paginate(50);
+
+            } else {
+                $allPoints = Point::where('f3', 'like', $f3)->whereNotNull('request_date')->orderBy("id", "desc")->paginate(50);
+
+            }
+
+
+//
+//            $new_date = Carbon::now()->addDay(-value($days));
+//            $true_date = Carbon::parse($new_date)->format('yy-m-d');
+//
+//            if ($status == "%") {
+//                $allPoints = Point::where('f3', 'like', $f3)->whereDate('date', '<', $true_date)->orWhere('date', null)->orderBy("date", "desc")->paginate(50);
+//
+//            } elseif ($status == "1") {
+//                $allPoints = Point::where('f3', 'like', $f3)->whereDate('date' , $true_date)->orderBy("date", "desc")->paginate(50);
+//
+//            } elseif ($status == "2") {
+//                $allPoints = Point::where('f3', 'like', $f3)->whereDate('date', '<', $true_date)->orderBy("date", "desc")->paginate(50);
+//
+//            } elseif ($status == "3") {
+//                $allPoints = Point::where('f3', 'like', $f3)->whereNull('date')->orderBy("id", "desc")->paginate(50);
+//
+//            } else {
+//                $allPoints = Point::where('f3', 'like', $f3)->whereNotNull('request_date')->orderBy("date", "desc")->paginate(50);
+//
+//            }
 
         } else {
 
-            $allPoints = Point::where('name', 'like', '%' . $t_search . '%')->orWhere('t_number', 'like',  $t_search )->orWhere('description', 'like', '%' . $t_search . '%')->orWhere('id', $t_search)->orderBy("date", "desc")->paginate(50);
+            $allPoints = Point::where('name', 'like', '%' . $t_search . '%')->orWhere('t_number', 'like', $t_search)->orWhere('description', 'like', '%' . $t_search . '%')->orWhere('id', $t_search)->orderBy("date", "desc")->paginate(50);
 
         }
 
@@ -544,7 +633,7 @@ class ControlPanelController extends Controller
         $type2 = DB::table('point')->where("category", "<>", 4)->where('date', '=', $mydate)->count();
         $type1 = DB::table('point')->where("category", "<>", 4)->where('date', '<', $mydate)->count();
         return view('roadGuide.all_point2')->with([
-            "allPoints" => $allPoints, "user_name" => $use_name, "type1" => $type1, "type2" => $type2, "type3" => $type3 , "searchtext"=>$t_search]);
+            "allPoints" => $allPoints, "user_name" => $use_name, "type1" => $type1, "type2" => $type2, "type3" => $type3, "searchtext" => $t_search,"s_f3"=>$f3,"s_status"=>$status]);
     }
 
     public function all_point()
@@ -598,7 +687,8 @@ class ControlPanelController extends Controller
         }
 
     }
-   public function my_family2()
+
+    public function my_family2()
     {
         $name = session()->get("USER_NAME");
         if ($name) {

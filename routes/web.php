@@ -40,6 +40,7 @@ Route::get('/family_search', "ControlPanelController@family_search")->name('fami
 Route::get('/my_activity', "ControlPanelController@my_activity");
 
 Route::post("/123456789123456789/insert_point", "ControlPanelController@insert_point");
+Route::post("/123456789123456789/renew", "ControlPanelController@renew");
 
 Route::get("/123456789123456789/all_point", "ControlPanelController@all_point");
 Route::get("/contact", "ControlPanelController@contact");

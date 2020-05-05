@@ -20,7 +20,7 @@
                         <tbody>
                         <tr>
                             <td>
-                                <form method="get"  action="/family_search" >
+                                <form method="get" action="/family_search">
                                     @csrf
 
                                     <input style="width: 250px" type="text" class="form-control" id="input_name"
@@ -37,11 +37,15 @@
                             <td>
 
                                 {{--<form method="post" action="{{ route('family_search') }}" action="/family_search">--}}
-                                    <form method="get"  action="/family_search" >
+                                <form method="get" action="/family_search">
                                     @csrf
                                     <div style="width: 250px" class="col-sm-3">
-                                        <input style="width: 250px" type="number" class="form-control" id="input_name" name="t_day" required
-                                               placeholder="لم نصل لهم منذ (اكتب عدد الايام) ايام">
+                                        {{--<input style="width: 250px" type="number" class="form-control" id="input_name" name="t_day"--}}
+                                        {{--placeholder="(اكتب عدد الايام)">--}}
+                                        {{----}}
+                                        <div style="width: 250px ;margin-top: 10px" class="form-group">
+                                            @include("items.status")
+                                        </div>
                                         <div style="width: 250px ;margin-top: 10px" class="form-group">
                                             @include("items.alhay")
                                         </div>
@@ -58,8 +62,6 @@
                                         </button>
 
 
-
-
                                     </div>
 
                                 </form>
@@ -70,12 +72,12 @@
                                     @csrf
 
                                     {{--@include("items.cities")--}}
-<row>
-    <a style="width: 250px" class="btn btn-shadow" onclick="getLocation()"><i
-                class="fa fa-search-location fa-2x"> </i> تحديد موقعي </a>
+                                    <row>
+                                        <a style="width: 250px" class="btn btn-shadow" onclick="getLocation()"><i
+                                                    class="fa fa-search-location fa-2x"> </i> تحديد موقعي </a>
 
 
-</row>
+                                    </row>
                                     <row>
                                         <button style="width: 170px" type="submit" class="btn btn-shadow"> الاقرب لموقعي
                                         </button>
@@ -101,6 +103,43 @@
         </div>
 
         <ul>
+            @if(isset($searchtext))
+                @if($searchtext != "")
+                    <h5>بحثت عن : {{$searchtext}}</h5>
+
+                @endif
+
+            @endif
+            @if(isset($s_f3))
+                <h5> بحثت في :
+
+                    @if($s_f3 == "%")
+
+                        جميع الاحياء
+                    @else
+                        {{$s_f3}}
+                    @endif
+
+
+                </h5>
+                <h5>
+                    الحالة :
+                    @if($s_status == "%")
+                        الكل
+                    @elseif($s_status == "1")
+                        تم الوصول اليهم اليوم
+                    @elseif($s_status == "3")
+                        لم يتم توثيقهم
+                    @else($s_status == "4")
+                        طلبات سلات جديده
+                    @endif
+
+
+                </h5>
+
+            @endif
+
+
             {!! $allPoints->links() !!}
             @php $i=1; @endphp
             @foreach($allPoints as $point)
@@ -234,8 +273,6 @@
                                         {{$point->f1}}</td>
 
 
-
-
                                     @if($point->date == "")
                                         <td style="width: 60px">اول تسليم</td>
 
@@ -246,7 +283,6 @@
                                     @endif
 
                                     @endif
-
 
 
                                 </tr>
