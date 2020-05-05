@@ -544,7 +544,7 @@ class ControlPanelController extends Controller
         $type2 = DB::table('point')->where("category", "<>", 4)->where('date', '=', $mydate)->count();
         $type1 = DB::table('point')->where("category", "<>", 4)->where('date', '<', $mydate)->count();
         return view('roadGuide.all_point2')->with([
-            "allPoints" => $allPoints, "user_name" => $use_name, "type1" => $type1, "type2" => $type2, "type3" => $type3]);
+            "allPoints" => $allPoints, "user_name" => $use_name, "type1" => $type1, "type2" => $type2, "type3" => $type3 , "searchtext"=>$t_search]);
     }
 
     public function all_point()

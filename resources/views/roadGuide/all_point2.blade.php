@@ -187,7 +187,22 @@
                                     <td style="width: 60px">{{$point->id}}</td>
                                     <td style="width: 160px">
                                         <a href="/single/{{$point->id}}">
-                                            <h5>   {{$point->name}}</h5>
+                                            <h5>
+
+
+                                                @if(isset($searchtext))
+                                                    <?php
+                                                    $pointname = str_replace($searchtext, ' <mark>' . $searchtext . '</mark>', $point->name);
+                                                    ?>
+
+                                                    {!! $pointname !!}
+                                                @else
+                                                    {{$point->name}}
+
+                                                @endif
+
+
+                                            </h5>
                                         </a>
 
                                     </td>
@@ -466,7 +481,13 @@
         </div>
     </div>
 @endsection
-
+<style>
+    mark {
+        background-color: #ffc165;
+        text-anchor: true;
+        color: black;
+    }
+</style>
 @section("script")
 
 
