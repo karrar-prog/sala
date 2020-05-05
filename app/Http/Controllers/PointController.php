@@ -112,7 +112,7 @@ class PointController extends Controller
         $type2 = DB::table('point')->where("category", "<>", 4)->where('date', '=', $mydate)->count();
         $type1 = DB::table('point')->where("category", "<>", 4)->where('date', '<', $mydate)->count();
 
-        $latAndLong = Point::orderBy('id')->where("category", "<>", 4)->get()->toArray();
+        $latAndLong = Point::orderBy('id','desc')->where("category", "<>", 4)->whereNotNull("longitude")->limit(500)->get()->toArray();
         return view('roadGuide.maps', compact('latAndLong'), ["user_name" => $use_name, "type1" => $type1, "type2" => $type2, "type3" => $type3]);
     }
 
