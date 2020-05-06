@@ -38,6 +38,7 @@ Route::post('/nearby', "ControlPanelController@nearby");
 Route::post('/nearone', "ControlPanelController@nearone");
 Route::get('/family_search', "ControlPanelController@family_search")->name('family_search');
 Route::get('/my_activity', "ControlPanelController@my_activity");
+Route::get('/myresult/{f3}/{status}', "ControlPanelController@family_search")->name('myresult');
 
 Route::post("/123456789123456789/insert_point", "ControlPanelController@insert_point");
 Route::post("/123456789123456789/renew", "ControlPanelController@renew");

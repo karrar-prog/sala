@@ -44,19 +44,7 @@
                                         {{--placeholder="(اكتب عدد الايام)">--}}
                                         {{----}}
                                         <div style="width: 250px ;margin-top: 10px" class="form-group">
-                                            <select id="input_status" name="status" class="form-control">
-                                                {{--<option selected value="0">العوام</option>--}}
-                                                {{--<option selected value="0">الساة</option>--}}
-
-
-                                                <option value="%">الكل</option>
-                                                <option value="1">تم الوصول اليهم اليوم</option>
-                                                {{--<option  value="2">ينتظرون مساعدة</option>--}}
-                                                <option value="3">لم يتم توثيقهم</option>
-
-                                                <option  value="4">طلبات سلات جديده</option>
-                                            </select>
-
+                                            @include("items.status")
                                         </div>
                                         <div style="width: 250px ;margin-top: 10px" class="form-group">
                                             @include("items.alhay")
@@ -551,6 +539,7 @@
         }
 
         function showPosition(position) {
+
             $("#input_latitude").val(position.coords.latitude);
             $("#input_longitude").val(position.coords.longitude);
             $("#input_latitude").attr("readonly", "readonly");
@@ -585,7 +574,9 @@
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 center: center
             };
+
             map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
             var marker = new google.maps.Marker({
                 map: map,
                 position: center
