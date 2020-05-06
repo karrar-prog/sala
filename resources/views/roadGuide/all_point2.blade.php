@@ -9,7 +9,7 @@
 @endsection
 
 @section("content")
-    <div class="container py-4 ">
+    <div class="container py-4 " style="margin-top: 50px">
         <div class="row1 " id="all-points1">
 
             @if(isset($_COOKIE["USER_SESSION"]))
