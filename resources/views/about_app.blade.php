@@ -137,14 +137,14 @@
 
                     <li class="list-group-item"><img src="{{asset("maps-icon/2.png")}}" alt="-" border="0"
                                                      style="max-width: 30px;">
-                        <a href="/list/2">  {{$type2}} تم الوصول اليهم مؤخرا </a>
+                        <a href="/list/2">  {{$type2}} تم الوصول اليهم اليوم </a>
                     <li class="list-group-item"><img src="{{asset("maps-icon/1.png")}}" alt="-" border="0"
                                                      style="max-width: 30px;">
-                        <a href="/list/1">{{$type1}} ينتظر مساعدة </a>
+                        <a href="/list/1">{{$type1}}تم الوصول اليهم مؤخرا </a>
                     </li>
                     <li class="list-group-item"><img src="{{asset("maps-icon/3.png")}}" alt="-" border="0"
                                                      style="max-width: 30px;">
-                        <a href="/list/3"> {{$type3}} بأنتظار التوثيق </a>
+                        <a href="/list/3"> {{$type3}} بأنتظار التوثيق و المساعدة </a>
                     </li>
 
 
