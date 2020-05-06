@@ -566,9 +566,7 @@ class ControlPanelController extends Controller
         $f3 = Input::get('f3', '%');
         $t_search = Input::get("t_search", "");
         $status = Input::get("status", "%");
-//$d = "myresult/$f3/$status";
-//
-//        return redirect($d);
+
 
         if ($t_search == "") {
 
