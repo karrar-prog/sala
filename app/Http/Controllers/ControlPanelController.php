@@ -562,7 +562,7 @@ class ControlPanelController extends Controller
 
     public function family_search()
     {
-        $days = Input::get('t_day', '0');
+        $days = Input::get('t_day', '50');
         $f3 = Input::get('f3', '%');
         $t_search = Input::get("t_search", "");
         $status = Input::get("status", "%");
@@ -572,21 +572,22 @@ class ControlPanelController extends Controller
 
             $new_date = Carbon::now();
             $true_date = Carbon::parse($new_date)->format('yy-m-d');
-//
+
+
             if ($status == "%") {
-                $allPoints = Point::where('f3', 'like', $f3)->orWhere('date', null)->orderBy("id", "desc")->paginate(50);
+                $allPoints = Point::where('f3', 'like', $f3)->orderBy("id", "desc")->paginate($days);
 
             } elseif ($status == "1") {
-                $allPoints = Point::where('f3', 'like',  $f3)->whereDate('date',$true_date)->whereNull('request_date')->orderBy("date", "desc")->paginate(50);
+                $allPoints = Point::where('f3', 'like',  $f3)->whereDate('date',$true_date)->whereNull('request_date')->orderBy("date", "desc")->paginate($days);
 
             } elseif ($status == "2") {
-                $allPoints = Point::where('f3', 'like',  $f3)->orderBy("date", "desc")->paginate(50);
+                $allPoints = Point::where('f3', 'like',  $f3)->orderBy("date", "desc")->paginate($days);
 
             } elseif ($status == "3") {
-                $allPoints = Point::where('f3', 'like', $f3)->whereNull('date')->orderBy("id", "desc")->paginate(50);
+                $allPoints = Point::where('f3', 'like', $f3)->whereNull('date')->orderBy("id", "desc")->paginate($days);
 
             } else {
-                $allPoints = Point::where('f3', 'like', $f3)->whereNotNull('request_date')->orderBy("id", "desc")->paginate(50);
+                $allPoints = Point::where('f3', 'like', $f3)->whereNotNull('request_date')->orderBy("id", "desc")->paginate($days);
 
             }
 

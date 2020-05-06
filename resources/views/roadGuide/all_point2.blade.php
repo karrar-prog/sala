@@ -13,7 +13,7 @@
         <div class="row1 " id="all-points1">
 
             @if(isset($_COOKIE["USER_SESSION"]))
-                <div class="card text-center btn btn-shadow" style="margin-top: 60px ; margin-bottom: 60px">
+                <div class="card text-center btn btn-shadow" >
 
                     <table class="table table-striped">
 
@@ -40,9 +40,9 @@
                                 <form method="get" action="/family_search">
                                     @csrf
                                     <div style="width: 250px" class="col-sm-3">
-                                        {{--<input style="width: 250px" type="number" class="form-control" id="input_name" name="t_day"--}}
-                                        {{--placeholder="(اكتب عدد الايام)">--}}
-                                        {{----}}
+                                        <input style="width: 250px" type="number" class="form-control" id="input_name" name="t_day"
+                                        placeholder="عدد النتائج">
+
                                         <div style="width: 250px ;margin-top: 10px" class="form-group">
                                             <select id="input_status" name="status" class="form-control">
                                                 {{--<option selected value="0">العوام</option>--}}
@@ -148,8 +148,10 @@
 
 
                 </h5>
-
-            @endif
+                    {{--<h5>عدد النتائج--}}
+                   {{--{{count($allPoints)}}--}}
+                    {{--</h5>--}}
+                    @endif
 
 
             {!! $allPoints->links() !!}
@@ -157,7 +159,6 @@
             @foreach($allPoints as $point)
 
 
-                <div class="card text-center btn btn-shadow">
 
 
                     @if(isset($_COOKIE["USER_SESSION"]))
@@ -200,7 +201,7 @@
                                 </svg>
                             </a>
                             <a style="width: 110px" href="javascript:void(0);" class="location btn btn-shadow"
-                               style="margin: 20px"
+
                                data-latitude="{{$point->latitude}}" data-longitude="{{$point->longitude}}">
                                 <svg class="bi bi-map" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
                                      xmlns="http://www.w3.org/2000/svg">
@@ -274,13 +275,13 @@
 
                                     </td>
                                     <td style="width: 90px">ألمختار:{{$point->admin_name}}</td>
-                                    <td style="width: 90px">حي: {{$point->f3}}</td>
+                                    <td style="width: 90px">{{$point->f3}}</td>
                                     <td style="max-width: 90px">
 
                                         عنوان:
                                         {{$point->description}} </td>
 
-                                    <td style="width: 90px">تموينية:
+                                    <td style="width: 150px">تموينية:
 
                                         {{$point->f1}}</td>
 
@@ -469,11 +470,6 @@
 
                         {{--</div>--}}
 
-                </div>
-
-                <div class="timeline-badge shadow">
-
-                </div>
 
 
 
