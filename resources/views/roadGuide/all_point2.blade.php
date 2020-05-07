@@ -154,7 +154,7 @@
                     @endif
 
 
-            {!! $allPoints->links() !!}
+            {!! $allPoints->appends(['status' => $s_status ,'f3' => $s_f3 , 't_search'=>$searchtext, 't_day'=>$t_day])->links() !!}
             @php $i=1; @endphp
             @foreach($allPoints as $point)
 
@@ -475,7 +475,8 @@
 
 
             @endforeach
-            {!! $allPoints->links() !!}
+                        {!! $allPoints->appends(['status' => $s_status ,'f3' => $s_f3 , 't_search'=>$searchtext])->links() !!}
+
         </ul>
 
 

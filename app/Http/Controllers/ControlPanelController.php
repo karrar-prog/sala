@@ -563,9 +563,14 @@ class ControlPanelController extends Controller
     public function family_search()
     {
         $days = Input::get('t_day', '50');
+        if($days == null)
+        {
+            $days=50;
+        }
         $f3 = Input::get('f3', '%');
         $t_search = Input::get("t_search", "");
         $status = Input::get("status", "%");
+
 
 
         if ($t_search == "") {
@@ -588,42 +593,15 @@ class ControlPanelController extends Controller
 
             } else {
                 $allPoints = Point::where('f3', 'like', $f3)->whereNotNull('request_date')->orderBy("id", "desc")->paginate($days);
-
             }
-
-
-//
-//            $new_date = Carbon::now()->addDay(-value($days));
-//            $true_date = Carbon::parse($new_date)->format('yy-m-d');
-//
-//            if ($status == "%") {
-//                $allPoints = Point::where('f3', 'like', $f3)->whereDate('date', '<', $true_date)->orWhere('date', null)->orderBy("date", "desc")->paginate(50);
-//
-//            } elseif ($status == "1") {
-//                $allPoints = Point::where('f3', 'like', $f3)->whereDate('date' , $true_date)->orderBy("date", "desc")->paginate(50);
-//
-//            } elseif ($status == "2") {
-//                $allPoints = Point::where('f3', 'like', $f3)->whereDate('date', '<', $true_date)->orderBy("date", "desc")->paginate(50);
-//
-//            } elseif ($status == "3") {
-//                $allPoints = Point::where('f3', 'like', $f3)->whereNull('date')->orderBy("id", "desc")->paginate(50);
-//
-//            } else {
-//                $allPoints = Point::where('f3', 'like', $f3)->whereNotNull('request_date')->orderBy("date", "desc")->paginate(50);
-//
-//            }
 
         } else {
 
             $allPoints = Point::where('name', 'like', '%' . $t_search . '%')->orWhere('t_number', 'like', $t_search)->orWhere('description', 'like', '%' . $t_search . '%')->orWhere('id', $t_search)->orderBy("date", "desc")->paginate(50);
 
         }
-
-
         $mydatetime = Carbon::now();
         $mydate = $mydatetime->toDateString();
-
-
         $use_name = "";
         try {
             $use_name = session()->get("USER_NAME");
@@ -631,11 +609,9 @@ class ControlPanelController extends Controller
         } catch (Exception $s) {
 
         }
-        $type3 = DB::table('point')->where("category", "<>", 4)->where('date', null)->count();
-        $type2 = DB::table('point')->where("category", "<>", 4)->where('date', '=', $mydate)->count();
-        $type1 = DB::table('point')->where("category", "<>", 4)->where('date', '<', $mydate)->count();
-        return view('roadGuide.all_point2')->with([
-            "allPoints" => $allPoints, "user_name" => $use_name, "type1" => $type1, "type2" => $type2, "type3" => $type3, "searchtext" => $t_search,"s_f3"=>$f3,"s_status"=>$status]);
+
+      return view('roadGuide.all_point2')->with([
+            "allPoints" => $allPoints, "user_name" => $use_name, "searchtext" => $t_search,"s_f3"=>$f3,"s_status"=>$status,"t_day"=>$days]);
     }
   public function family_result($f3,$status)
     {
@@ -780,8 +756,12 @@ class ControlPanelController extends Controller
             } catch (Exception $s) {
 
             }
+            $t_search="";
+            $f3= "%";
+            $status="%";
+            $days="50";
 //            return view("/CP/point/all_point", ["points" => $points, "user_name" => $user_name]);
-            return view("/roadGuide/all_point2", ["allPoints" => $points, "user_name" => $user_name]);
+            return view("/roadGuide/all_point2", ["allPoints" => $points, "user_name" => $user_name, "searchtext" => $t_search,"s_f3"=>$f3,"s_status"=>$status,"t_day"=>$days]);
         } else {
 
 
