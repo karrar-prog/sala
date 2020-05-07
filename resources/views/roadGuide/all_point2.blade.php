@@ -166,15 +166,15 @@
                     <tbody>
                     <tr>
 
-                        <td style="width: 20px ;text-align: right; background: white">وصول,خارطة</td>
-                        <td style="width: 20px ;text-align: right; background: white">تسلسل</td>
-                        <td style="width: 50px;text-align: right; background: white">الاسم</td>
-                        <td style="width: 50px; background: white">رقم الهاتف</td>
-                        <td style="width: 50px; background: white">اسم المختار</td>
-                        <td style="width: 50px; background: white">الحي</td>
-                        <td style="width: 50px; background: white">العنوان</td>
-                        <td style="width: 50; background: white">بطاقة التموينية</td>
-                        <td style="width: 50px; background: white">تأريخ التسليم</td>
+                        <td style="text-align: right; background: white">وصول,خارطة</td>
+                        <td style="text-align: right; background: white">تسلسل</td>
+                        <td style="text-align: right; background: white">الاسم</td>
+                        <td style="background: white">رقم الهاتف</td>
+                        <td style="background: white">اسم المختار</td>
+                        <td style="background: white">الحي</td>
+                        <td style="background: white">العنوان</td>
+                        <td style="background: white">التموينية</td>
+                        <td style="background: white">تأريخ التسليم</td>
                     </tr>
                     @foreach($allPoints as $point)
 
@@ -186,7 +186,7 @@
 
 
 
-                                <td style="width: 130px ; background: white">
+                                <td style="width: 100px ; background: white">
                                     <row>
 
                                         @if($user_name == $point->username )
@@ -215,7 +215,7 @@
 
                                             {{--</a>--}}
                                         @endif
-                                        <a style="width: 50px" href="/show_help/{{$point->id}}" class=" btn btn-shadow"
+                                        <a style="width: 40px" href="/show_help/{{$point->id}}" class=" btn btn-shadow"
                                         >
                                             <svg class="bi bi-check-all" width="1em" height="1em" viewBox="0 0 16 16"
                                                  fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -225,7 +225,7 @@
                                                 <path d="M6.25 8.043l-.896-.897a.5.5 0 10-.708.708l.897.896.707-.707zm1 2.414l.896.897a.5.5 0 00.708 0l7-7a.5.5 0 00-.708-.708L8.5 10.293l-.543-.543-.707.707z"/>
                                             </svg>
                                         </a>
-                                        <a style="width: 50px" href="javascript:void(0);"
+                                        <a style="width: 40px" href="javascript:void(0);"
                                            class="location btn btn-shadow"
 
                                            data-latitude="{{$point->latitude}}" data-longitude="{{$point->longitude}}">
@@ -238,7 +238,7 @@
                                             </svg>
                                         </a>
                                         @if($point->date == null)
-                                            <a style="width: 110px ; margin-top: 5px" href="/validate/{{$point->id}}"
+                                            <a style="width: 85px ; margin-top: 10px" href="/validate/{{$point->id}}"
                                                class="btn btn-dark">
 
                                                 <svg class="bi bi-eye" width="1em" height="1em" viewBox="0 0 16 16"
@@ -251,7 +251,8 @@
                                                           d="M8 5.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM4.5 8a3.5 3.5 0 117 0 3.5 3.5 0 01-7 0z"
                                                           clip-rule="evenodd"/>
                                                 </svg>
-                                                تم الكشف </a>
+                                                الكشف
+                                              </a>
                                         @endif
                                     </row>
                                 </td>
@@ -296,11 +297,11 @@
                                 </td>
                                 <td style="width: 90px; background: white">{{$point->admin_name}}</td>
                                 <td style="width: 90px; background: white">{{$point->f3}}</td>
-                                <td style="max-width: 90px; background: white">
+                                <td style="max-width: 160px; background: white">
 
                                     {{$point->description}} </td>
 
-                                <td style="width: 120px; background: white">
+                                <td style="width: 40px; background: white">
 
                                     {{$point->f1}}</td>
 
