@@ -589,10 +589,10 @@ class ControlPanelController extends Controller
                 $allPoints = Point::where('f3', 'like',  $f3)->orderBy("date", "desc")->paginate($days);
 
             } elseif ($status == "3") {
-                $allPoints = Point::where('f3', 'like', $f3)->whereNull('date')->orderBy("id", "desc")->paginate($days);
+                $allPoints = Point::where('f3', 'like', $f3)->whereNull('date')->orderBy("f3", "asc")->paginate($days);
 
             } else {
-                $allPoints = Point::where('f3', 'like', $f3)->whereNotNull('request_date')->orderBy("id", "desc")->paginate($days);
+                $allPoints = Point::where('f3', 'like', $f3)->whereNotNull('request_date')->orderBy("f3", "asc")->paginate($days);
             }
 
         } else {
@@ -816,19 +816,19 @@ class ControlPanelController extends Controller
     {
         if (session()->get("USER_NAME")) {
             $point = Point::find($id);
-
-            if ($point->delete()) {
-                $mesaage = "تم الحذف";
+            $point->status = "غير مستحق";
+            if ($point->save()) {
+                $mesaage = "تم الحظر";
             } else {
-                $mesaage = "لم يتم الحذف";
+                $mesaage = "لم يتم الحظر";
             }
 
 
-            return redirect("/my_family")->with('message', $mesaage);
+            return redirect("/")->with('message', $mesaage);
 
         } else {
             $mesaage = "ليس لديك الصلاحية";
-            return redirect("/my_family")->with('message', $mesaage);
+            return redirect("/")->with('message', $mesaage);
         }
 
     }

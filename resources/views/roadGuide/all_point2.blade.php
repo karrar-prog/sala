@@ -306,8 +306,12 @@
                                     {{$point->f1}}</td>
 
 
-                                @if($point->date == "")
-                                    <td style="width: 60px">اول تسليم</td>
+                                @if($point->status == "غير مستحق")
+
+                                    <td style="width: 60px ; background: #b26569">غير مستحق</td>
+
+                                @elseif($point->date == "")
+                                        <td style="width: 60px">اول تسليم</td>
 
                                 @else
 
